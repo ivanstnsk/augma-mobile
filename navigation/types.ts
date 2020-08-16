@@ -25,3 +25,8 @@ export type AccountParamList = {
 export type RootStackParamList = {
   main: undefined;
 };
+
+export type MainStackParamList = {
+  main: undefined;
+  quest: undefined;
+};

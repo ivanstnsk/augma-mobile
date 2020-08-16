@@ -4,6 +4,7 @@ export const icons = {
   accountActive: require('../assets/images/tab-account-active.png'),
   questsActive: require('../assets/images/tab-quests-active.png'),
   noScreen: require('../assets/images/no-screen.png'),
+  back: require('../assets/images/back.png'),
 };
 
 export const getIconByName = (name: string) => {
