@@ -4,13 +4,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { MainStackParamList } from './types';
 import { TabNavigator } from './TabNavigator';
 import { Quest } from '../screens/Quest';
-import { Header } from '../components/Header';
+import { HeaderTitle } from '../components/HeaderTitle';
+import { headerSecondaryStyles } from '../ui/styles';
 
 const MainStack = createStackNavigator<MainStackParamList>();
 
 export const MainNavigator: React.FC = () => {
   return (
-    <MainStack.Navigator>
+    <MainStack.Navigator
+      screenOptions={{
+        ...headerSecondaryStyles,
+        headerTitle: HeaderTitle,
+      }}
+    >
       <MainStack.Screen
         name="main"
         component={TabNavigator}
@@ -21,9 +27,6 @@ export const MainNavigator: React.FC = () => {
       <MainStack.Screen
         name="quest"
         component={Quest}
-        options={{
-          header: Header
-        }}
       />
     </MainStack.Navigator>
   );

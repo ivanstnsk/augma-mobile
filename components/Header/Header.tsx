@@ -19,9 +19,12 @@ const prepareTitle = (routeName: string): string => {
 export const Header: React.FC<Props> = ({
   scene,
   navigation,
+  styleInterpolator,
 }) => {
   const insets = useSafeAreaInsets();
   const canGoBack = false; // navigation.canGoBack();
+
+  console.log(scene.route.name)
 
   const wrapperStyles = {
     ...styles.wrapper,
