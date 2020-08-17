@@ -59,6 +59,7 @@ export const Header: React.FC<Props> = ({
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#1F1F1F',
+    paddingBottom: 8,
   },
   container: {
     height: 50,

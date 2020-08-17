@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 type Props = {
-  children: React.ReactElement;
+  children: React.ReactElement | React.ReactElement[];
 };
 
 export const ScreenWrapper: React.FC<Props> = ({
