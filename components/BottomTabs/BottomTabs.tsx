@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabIcon: {
-    width: 24,
-    height: 24,
+    width: 32,
+    height: 32,
   },
   tabLabel: {
     fontSize: 12,
