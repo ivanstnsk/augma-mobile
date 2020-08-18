@@ -4,9 +4,10 @@
     "slug": "Augma",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo-big.png",
+    "icon": "./assets/images/app-icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "privacy": "public",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
