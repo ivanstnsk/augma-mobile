@@ -27,6 +27,9 @@ export const MainNavigator: React.FC = () => {
       <MainStack.Screen
         name="quest"
         component={Quest}
+        options={{
+          headerShown: false,
+        }}
       />
     </MainStack.Navigator>
   );
