@@ -8,6 +8,7 @@ export const icons = {
   back: require('../assets/images/back.png'),
   skull: require('../assets/images/skull.png'),
   skullActive: require('../assets/images/skull-active.png'),
+  backArrow: require('../assets/images/back-arrow.png'),
 };
 
 export const getIconByName = (name: string) => {
