@@ -19,6 +19,7 @@ const renderIcons = (level: number): JSX.Element[] => {
 
     row.push(
       <Image
+        key={`complexity-item-${i}`}
         source={iconSource}
         resizeMode="contain"
         style={styles.icon}
