@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Animated, Dimensions } from 'react-native';
+import { StyleSheet, Image, View, Text, Animated, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 
@@ -115,6 +115,11 @@ export const QuestStart: React.FC = () => {
       </Animated.View>
       <Animated.View style={getReadyContainerStyles}>
         <View style={styles.getReadyInner}>
+          <Image
+            source={require('../../assets/images/quest-1-cover.png')}
+            style={styles.bgImage}
+            resizeMode="cover"
+          />
           {questStarting && (
             <>
             <Text style={styles.label}>Приготовьтесь. Старт через</Text>
@@ -154,5 +159,10 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     color: '#C62626',
+  },
+  bgImage: {
+    height: '100%',
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.3,
   }
 });
