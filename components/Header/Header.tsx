@@ -11,9 +11,10 @@ const prepareTitle = (routeName: string): string => {
   switch (routeName) {
     case 'account': return 'Аккаунт';
     case 'questsAll': return 'Квесты';
-    case 'questProgress': return 'Прогресс';
-    case 'questMessages': return 'Сообщения';
-    case 'questMap': return 'Карта';
+    case 'progress': return 'Прогресс';
+    case 'messages': return 'Сообщения';
+    case 'inventory': return 'Инвентарь';
+    case 'map': return 'Карта';
     default: return routeName;
   }
 }
