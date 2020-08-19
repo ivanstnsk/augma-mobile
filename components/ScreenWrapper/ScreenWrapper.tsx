@@ -18,6 +18,7 @@ export const ScreenWrapper: React.FC<Props> = ({
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#1F1F1F',
   }
 });
