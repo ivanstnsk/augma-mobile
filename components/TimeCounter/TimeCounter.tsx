@@ -11,15 +11,15 @@ export const TimeCounter: React.FC<Props> = ({
   onDidFinish,
 }) => {
   const [time, setTime] = React.useState(-Infinity);
-  const charOffset = React.useRef(new Animated.Value(0)).current;
+  const charScale = React.useRef(new Animated.Value(1)).current;
   const charOpacity = React.useRef(new Animated.Value(1)).current;
 
   const animateNextChar = (time: number) => {
-    charOffset.setValue(0);
+    charScale.setValue(1);
     charOpacity.setValue(1);
     Animated.parallel([
-      Animated.timing(charOffset, {
-        toValue: 30,
+      Animated.timing(charScale, {
+        toValue: 2,
         duration: 1000,
         useNativeDriver: true,
       }),
@@ -48,7 +48,10 @@ export const TimeCounter: React.FC<Props> = ({
     styles.infoContainer,
     {
       opacity: charOpacity,
-      transform: [ { translateY: charOffset } ],
+      transform: [
+        { scaleX: charScale },
+        { scaleY: charScale },
+      ],
     }
   ];
 
