@@ -14,6 +14,8 @@ export const icons = {
   questProgressActive: require('../assets/images/tab-quest-progress-active.png'),
   questMessages: require('../assets/images/tab-quest-messages.png'),
   questMessagesActive: require('../assets/images/tab-quest-messages-active.png'),
+  questInventory: require('../assets/images/tab-quest-inventory.png'),
+  questInventoryActive: require('../assets/images/tab-quest-inventory-active.png'),
   questMap: require('../assets/images/tab-quest-map.png'),
   questMapActive: require('../assets/images/tab-quest-map-active.png'),
 };
@@ -29,6 +31,8 @@ export const getIconByName = (name: string) => {
     case 'questProgressActive': return icons.questProgressActive;
     case 'questMessages': return icons.questMessages;
     case 'questMessagesActive': return icons.questMessagesActive;
+    case 'questInventory': return icons.questInventory;
+    case 'questInventoryActive': return icons.questInventoryActive;
     case 'questMap': return icons.questMap;
     case 'questMapActive': return icons.questMapActive;
     default: return icons.account;

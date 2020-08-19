@@ -35,6 +35,7 @@ export type MainStackParamList = {
 export type QuestBottomTabParamList = {
   questProgress: undefined;
   questMessages: undefined;
+  questInventory: undefined;
   questMap: undefined;
 };
 
@@ -44,6 +45,10 @@ export type QuestProgressParamList = {
 
 export type QuestMessagesParamList = {
   messages: undefined;
+};
+
+export type QuestInventoryParamList = {
+  inventory: undefined;
 };
 
 export type QuestMapParamList = {

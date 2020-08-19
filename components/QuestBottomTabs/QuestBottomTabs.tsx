@@ -17,6 +17,7 @@ const prepareLabel = (routeName: string): string => {
   switch (routeName) {
     case 'questProgress': return 'Прогресс';
     case 'questMessages': return 'Сообщения';
+    case 'questInventory': return 'Инвентарь';
     case 'questMap': return 'Карта';
     default: return routeName;
   }
