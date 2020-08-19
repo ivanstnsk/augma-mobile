@@ -15,7 +15,7 @@ export const QuestsAll: React.FC = () => {
   const navigation = useNavigation();
 
   const handlePress = React.useCallback(() => {
-    navigation.navigate('quest');
+    navigation.navigate('questStart');
   }, []);
 
   return (
