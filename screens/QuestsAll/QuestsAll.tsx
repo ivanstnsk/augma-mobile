@@ -3,12 +3,37 @@ import { StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { ScreenWrapper } from '../../components/ScreenWrapper';
-import { NoScreen } from '../../components/NoScreen';
 
 import { QuestCard } from './components';
 
-const QUESTS = [
-  { name: 'Вакцина', level: 1 },
+const QUESTS: QuestInfo[] = [
+  {
+    id: 'vac1',
+    name: 'Вакцина',
+    description: {
+      goal: 'Передать данные для создания вакцины координатору. Но будь осторожен: приспешники корпорации тоже ведут охоту за данными! Решай с умом кому довериться а кому нет.',
+      points: [
+        {
+          id: 'check1',
+          name: 'Тревожное сообщение'
+        },
+        {
+          id: 'check2',
+          name: 'Ключ к координатам'
+        },
+        {
+          id: 'check3',
+          name: 'Союзники и враги'
+        },
+        {
+          id: 'check4',
+          name: 'Выбор'
+        },
+      ]
+    },
+    level: 1,
+    limitation: -1,
+  },
 ];
 
 export const QuestsAll: React.FC = () => {
@@ -24,10 +49,10 @@ export const QuestsAll: React.FC = () => {
         style={styles.wrapper}
         contentContainerStyle={styles.container}
       >
-        {QUESTS.map(({ name, level }) => (
+        {QUESTS.map((item) => (
           <QuestCard
-            label={name}
-            level={level}
+            key={item.id}
+            data={item}
             onPress={handlePress}
           />
         ))}
