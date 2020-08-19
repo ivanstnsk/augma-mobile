@@ -3,17 +3,16 @@ import { StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 
 import { ComplexityBar } from '../../../../components/ComplexityBar';
 
-import * as Assets from '../../../../ui/assets';
-
 type Props = {
-  label: string;
-  level: number;
+  data: QuestInfo;
   onPress: () => void;
 }
 
 export const QuestCard: React.FC<Props> = ({
-  label,
-  level,
+  data: {
+    name,
+    level,
+  },
   onPress,
 }) => {
 
@@ -27,7 +26,7 @@ export const QuestCard: React.FC<Props> = ({
         resizeMode="cover"
         style={styles.image}
       />
-      <Text style={styles.label}>{label}</Text>
+      <Text style={styles.label}>{name}</Text>
       <ComplexityBar level={level} />
     </TouchableOpacity>
   );
