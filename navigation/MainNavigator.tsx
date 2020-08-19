@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { MainStackParamList } from './types';
 import { TabNavigator } from './TabNavigator';
-import { Quest } from '../screens/Quest';
+import { QuestStart } from '../screens/QuestStart';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { headerSecondaryStyles } from '../ui/styles';
 
@@ -25,8 +25,8 @@ export const MainNavigator: React.FC = () => {
         }}
       />
       <MainStack.Screen
-        name="quest"
-        component={Quest}
+        name="questStart"
+        component={QuestStart}
         options={{
           headerShown: false,
         }}
