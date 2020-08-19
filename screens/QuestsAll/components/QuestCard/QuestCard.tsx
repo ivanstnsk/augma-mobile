@@ -23,9 +23,9 @@ export const QuestCard: React.FC<Props> = ({
       style={styles.button}
     >
       <Image
-        source={Assets.icons.noQuestIcon}
-        resizeMode="contain"
-        style={styles.icon}
+        source={require('../../../../assets/images/quest-1-cover.png')}
+        resizeMode="cover"
+        style={styles.image}
       />
       <Text style={styles.label}>{label}</Text>
       <ComplexityBar level={level} />
@@ -47,12 +47,13 @@ const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-    paddingVertical: 16,
+    paddingBottom: 16,
     marginVertical: 5,
+    overflow: 'hidden',
   },
-  icon: {
-    width: 100,
-    height: 100,
+  image: {
+    width: '100%',
+    height: 120,
   },
   label: {
     fontSize: 18,

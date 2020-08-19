@@ -8,10 +8,7 @@ import { NoScreen } from '../../components/NoScreen';
 import { QuestCard } from './components';
 
 const QUESTS = [
-  { name: 'Сокровище древних пиратов', level: 4 },
-  { name: 'Захват портала', level: 2 },
-  { name: 'Гонец', level: 4 },
-  { name: 'Дело древней давности', level: 7 },
+  { name: 'Вакцина', level: 1 },
 ];
 
 export const QuestsAll: React.FC = () => {
