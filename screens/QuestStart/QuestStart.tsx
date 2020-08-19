@@ -8,6 +8,8 @@ import { CoverWrapper } from '../../components/CoverWrapper';
 import { Button } from '../../components/Button';
 import { TimeCounter } from '../../components/TimeCounter';
 
+import { Title, Description } from './components';
+
 const screen = Dimensions.get('screen');
 
 export const QuestStart: React.FC = () => {
@@ -105,7 +107,34 @@ export const QuestStart: React.FC = () => {
   return (
     <ScreenWrapper>
       <Animated.View style={infoContainerStyles}>
-        <CoverWrapper />
+        <CoverWrapper>
+          <Title title="Вакцина" />
+          <Description
+            level={3}
+            limitation={-1}
+            description={{
+              goal: 'Передать данные для создания вакцины координатору. Но будь осторожен: приспешники корпорации тоже ведут охоту за данными! Решай с умом кому довериться а кому нет.',
+              points: [
+                {
+                  id: 'check1',
+                  name: 'Тревожное сообщение'
+                },
+                {
+                  id: 'check2',
+                  name: 'Ключ к координатам'
+                },
+                {
+                  id: 'check3',
+                  name: 'Союзники и враги'
+                },
+                {
+                  id: 'check4',
+                  name: 'Выбор'
+                },
+              ],
+            }}
+          />
+        </CoverWrapper>
         <View style={footerContainerStyles}>
           <Button
             label="Начать квест"
