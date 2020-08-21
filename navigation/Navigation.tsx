@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { RootNavigator } from './RootNavigator';
+import { RootNavigator } from '../screens/RootNavigator';
 
 type Props = {};
 
