@@ -18,6 +18,8 @@ export const icons = {
   questInventoryActive: require('../assets/images/tab-quest-inventory-active.png'),
   questMap: require('../assets/images/tab-quest-map.png'),
   questMapActive: require('../assets/images/tab-quest-map-active.png'),
+
+  appLogo: require('../assets/images/app-logo.png'),
 };
 
 export const getIconByName = (name: string) => {
