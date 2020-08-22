@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 
-import * as Assets from '../../../../ui/assets';
+import * as Assets from 'ui/assets';
 
 export const AuthHeader: React.FC = () => {
   return (

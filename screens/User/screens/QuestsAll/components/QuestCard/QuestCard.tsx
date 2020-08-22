@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 
-import { ComplexityBar } from '../../../../../../components/ComplexityBar';
+import { ComplexityBar } from 'components/ComplexityBar';
 
 type Props = {
   data: QuestInfo;
@@ -22,7 +22,7 @@ export const QuestCard: React.FC<Props> = ({
       style={styles.button}
     >
       <Image
-        source={require('../../../../../../assets/images/quest-1-cover.png')}
+        source={require('assets/images/quest-1-cover.png')}
         resizeMode="cover"
         style={styles.image}
       />

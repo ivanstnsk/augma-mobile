@@ -3,10 +3,10 @@ import { StyleSheet, Image, View, Text, Animated, Dimensions } from 'react-nativ
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 
-import { ScreenWrapper } from '../../../../components/ScreenWrapper';
-import { CoverWrapper } from '../../../../components/CoverWrapper';
-import { Button } from '../../../../components/Button';
-import { TimeCounter } from '../../../../components/TimeCounter';
+import { ScreenWrapper } from 'components/ScreenWrapper';
+import { CoverWrapper } from 'components/CoverWrapper';
+import { Button } from 'components/Button';
+import { TimeCounter } from 'components/TimeCounter';
 
 import { Title, Description } from './components';
 
@@ -95,7 +95,6 @@ export const QuestStart: React.FC = () => {
   }, [Animated]);
 
   const handleStart = React.useCallback((time: number) => {
-    console.log('start after ', time);
     navigation.dispatch(CommonActions.reset({
       index: 0,
       routes: [

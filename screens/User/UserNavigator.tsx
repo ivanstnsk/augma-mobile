@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { HeaderTitle } from '../../components/HeaderTitle';
-import { headerSecondaryStyles } from '../../ui/styles';
-
-import { UserStackParamList } from '../types';
+import { HeaderTitle } from 'components/HeaderTitle';
+import { headerSecondaryStyles } from 'ui/styles';
+import { UserStackParamList } from 'screens/types';
 
 import { QuestStart } from './screens/QuestStart';
 import { MainTabNavigator } from './MainTabNavigator';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { ScreenWrapper } from '../../../../components/ScreenWrapper';
+import { ScreenWrapper } from 'components/ScreenWrapper';
 
 import { QuestCard } from './components';
 

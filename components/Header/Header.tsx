@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StackHeaderProps } from '@react-navigation/stack';
 
-import * as Assets from '../../ui/assets';
+import * as Assets from 'ui/assets';
 
 type Props = {} & StackHeaderProps;
 
@@ -21,13 +21,11 @@ const prepareTitle = (routeName: string): string => {
 
 export const Header: React.FC<Props> = ({
   scene,
-  navigation,
-  styleInterpolator,
+  // navigation,
+  // styleInterpolator,
 }) => {
   const insets = useSafeAreaInsets();
   const canGoBack = false; // navigation.canGoBack();
-
-  console.log(scene.route.name)
 
   const wrapperStyles = {
     ...styles.wrapper,
@@ -52,7 +50,9 @@ export const Header: React.FC<Props> = ({
         )}
         <View style={styles.titleContainer}>
           <View style={titleBackStyles} />
-          <Text style={titleStyles} numberOfLines={1}>{prepareTitle(scene.route.name)}</Text>
+          <Text style={titleStyles} numberOfLines={1}>
+            {prepareTitle(scene.route.name)}
+          </Text>
         </View>
       </View>
     </View>

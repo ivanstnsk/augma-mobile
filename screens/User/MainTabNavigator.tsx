@@ -3,9 +3,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Header } from '../../components/Header';
-
-import { BottomTabParamList, QuestsParamList, AccountParamList } from '../types';
+import { Header } from 'components/Header';
+import { BottomTabParamList, QuestsParamList, AccountParamList } from 'screens/types';
 
 import { QuestsAll } from './screens/QuestsAll';
 import { Account } from './screens/Account';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
-import { ComplexityBar } from '../../../../../../components/ComplexityBar';
+import { ComplexityBar } from 'components/ComplexityBar';
 
 type Props = Pick<QuestInfo,
 | 'level'
@@ -89,7 +89,7 @@ export const Description: React.FC<Props> = ({
         <View style={styles.rightCell}>
           <Image
             style={styles.locationImage}
-            source={require('../../../../../../assets/images/location-cap.png')}
+            source={require('assets/images/location-cap.png')}
             resizeMode="cover"
           />
         </View>

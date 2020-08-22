@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import ReactNativeParallaxHeader from 'react-native-parallax-header';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import * as Assets from '../../ui/assets';
+import * as Assets from 'ui/assets';
 
 const getNavBarRenderer = (insetTop: number, onBackPress: () => void) => (): JSX.Element => {
   const containerStyles = [styles.navContainer, { marginTop: insetTop }];

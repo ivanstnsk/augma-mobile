@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { AuthStackParamList } from '../types';
-import { Header } from '../../components/Header';
+import { AuthStackParamList } from 'screens/types';
 
 import { Login } from './screens/Login';
 import { Registration } from './screens/Registration';

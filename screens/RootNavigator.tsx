@@ -1,14 +1,17 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { RootStackParamList } from './types';
+import { RootStackParamList } from 'screens/types';
+import { useUserType } from 'store/user';
+
 import { UserNavigator } from './User';
 import { AuthNavigator } from './Auth';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
 export const RootNavigator: React.FC = () => {
-  const auth = true;
+  const userType = useUserType();
+  const auth = userType === 'user';
 
   return (
     <RootStack.Navigator
@@ -23,9 +26,6 @@ export const RootNavigator: React.FC = () => {
       ) : (
         <RootStack.Screen
           name="auth"
-          options={{
-            animationTypeForReplace: auth ? 'push' : 'pop',
-          }}
           component={AuthNavigator}
         />
       )}

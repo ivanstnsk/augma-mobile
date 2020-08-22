@@ -1,8 +1,8 @@
 import * as React from 'react';
 // import { StyleSheet } from 'react-native';
 
-import { ScreenWrapper } from '../../../../components/ScreenWrapper';
-import { NoScreen } from '../../../../components/NoScreen';
+import { ScreenWrapper } from 'components/ScreenWrapper';
+import { NoScreen } from 'components/NoScreen';
 
 export const QuestProgress: React.FC = () => {
   return (

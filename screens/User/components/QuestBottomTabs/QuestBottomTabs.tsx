@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-import * as Assets from '../../../../ui/assets';
+import * as Assets from 'ui/assets';
 
 type Props = {} & BottomTabBarProps;
 

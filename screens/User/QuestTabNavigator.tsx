@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Header } from '../../components/Header';
+import { Header } from 'components/Header';
 
 import {
   QuestBottomTabParamList,
@@ -10,7 +10,7 @@ import {
   QuestMessagesParamList,
   QuestInventoryParamList,
   QuestMapParamList,
-} from '../types';
+} from 'screens/types';
 
 import { QuestProgress } from './screens/QuestProgress';
 import { QuestMessages } from './screens/QuestMessages';
