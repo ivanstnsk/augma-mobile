@@ -9,6 +9,7 @@ export type Routes =
   | 'account';
 
 export type AuthStackParamList = {
+  welcome: undefined;
   login: undefined;
   registration: undefined;
 }

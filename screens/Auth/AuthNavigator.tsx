@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { AuthStackParamList } from 'screens/types';
 
+import { Welcome } from './screens/Welcome';
 import { Login } from './screens/Login';
 import { Registration } from './screens/Registration';
 
@@ -15,6 +16,10 @@ export const AuthNavigator: React.FC = () => {
         headerShown: false,
       }}
     >
+      <AuthStack.Screen
+        name="welcome"
+        component={Welcome}
+      />
       <AuthStack.Screen
         name="login"
         component={Login}
