@@ -104,7 +104,7 @@ export const QuestStart: React.FC = () => {
   }, [navigation]);
 
   return (
-    <ScreenWrapper>
+    <View style={styles.wrapper}>
       <Animated.View style={infoContainerStyles}>
         <CoverWrapper>
           <Title title="Вакцина" />
@@ -165,17 +165,20 @@ export const QuestStart: React.FC = () => {
           />
         </View>
       </Animated.View>
-    </ScreenWrapper>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    backgroundColor: '#1F1F1F',
+  },
   infoContainer: {
     width: '100%',
     position: 'absolute',
   },
   footerContainer: {
-    width: '100%',
     paddingTop: 24,
     paddingHorizontal: 20,
   },
