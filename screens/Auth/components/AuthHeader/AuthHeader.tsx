@@ -1,33 +1,40 @@
 import * as React from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
+import { useSafeAreaFrame } from 'react-native-safe-area-context';
 
 import * as Assets from 'ui/assets';
 
-export const AuthHeader: React.FC = () => {
+type Props = {
+  title: string;
+}
+
+export const AuthHeader: React.FC<Props> = ({
+  title,
+}) => {
+  const frame = useSafeAreaFrame();
+
+  const wrapperStyles = [
+    styles.wrapper,
+    { height: frame.height / 2.8 },
+  ];
+
   return (
-    <View style={styles.wrapper}>
+    <View style={wrapperStyles}>
       <Image
         source={Assets.icons.appLogo}
         resizeMode="contain"
         style={styles.image}
       />
-      <Text style={styles.label}>Вход в КПК</Text>
+      <Text style={styles.label}>{title}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: '100%',
-    height: 'auto',
-    borderWidth: 1,
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  container: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   image: {
     width: 120,
