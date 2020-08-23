@@ -14,7 +14,7 @@ export const Welcome: React.FC = () => {
   }, [navigation]);
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper fullscreen>
       <View style={styles.container}>
         <Button
           onPress={getPressHandler('login')}

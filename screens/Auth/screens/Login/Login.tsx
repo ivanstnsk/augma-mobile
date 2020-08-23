@@ -24,7 +24,7 @@ export const Login: React.FC = () => {
   }, [navigation]);
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper fullscreen>
       <AuthHeader title="Вход" />
       <View style={styles.form}>
         <Input

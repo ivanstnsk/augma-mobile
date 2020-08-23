@@ -4,27 +4,39 @@ import { useSafeAreaInsets, useSafeAreaFrame } from 'react-native-safe-area-cont
 
 type Props = {
   children: React.ReactElement | React.ReactElement[];
+  fullscreen?: boolean;
+  disableInsets?: boolean;
+  disableTopInset?: boolean;
+  disableBottomInset?: boolean;
 };
 
 export const ScreenWrapper: React.FC<Props> = ({
   children,
+  fullscreen,
+  disableInsets,
+  disableTopInset,
+  disableBottomInset,
 }) => {
   const insets = useSafeAreaInsets();
   const frame = useSafeAreaFrame();
-  const minHeight = frame.height - insets.bottom - insets.top;
+
+  const topInset = disableInsets || disableTopInset ? 0 : insets.top;
+  const bottomInset = disableInsets || disableBottomInset ? 0 : insets.bottom;
 
   const containerStyles = [
     styles.container,
     {
-      marginTop: insets.top,
-      marginBottom: insets.bottom,
+      marginTop: topInset,
+      marginBottom: bottomInset,
     }
   ];
 
-  const innerStyles = [
-    styles.inner,
-    { minHeight }
-  ];
+  const innerStyles: any[] = [ styles.inner ];
+
+  if (fullscreen) {
+    const minHeight = frame.height - bottomInset - topInset;
+    innerStyles.push({ minHeight });
+  }
 
   return (
     <View style={styles.wrapper}>

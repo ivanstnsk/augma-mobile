@@ -24,7 +24,7 @@ export const Registration: React.FC = () => {
   }, [navigation]);
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper fullscreen>
       <AuthHeader title="Регистрация" />
       <View style={styles.form}>
         <Input

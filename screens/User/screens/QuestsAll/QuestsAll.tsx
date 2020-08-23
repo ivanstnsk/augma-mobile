@@ -44,7 +44,7 @@ export const QuestsAll: React.FC = () => {
   }, []);
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper disableInsets>
       <ScrollView
         style={styles.wrapper}
         contentContainerStyle={styles.container}
