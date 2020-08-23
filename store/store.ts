@@ -1,11 +1,13 @@
 import * as Redux from 'redux';
 
 import { userReducer } from './user/userReducer';
+import { globalErrorReducer } from './globalError/globalErrorReducer';
 
 import { middlewares } from './middlewares'
 
 const rootReducer = Redux.combineReducers({
   user: userReducer,
+  globalError: globalErrorReducer,
 });
 
 export type RootStore = ReturnType<typeof rootReducer>;

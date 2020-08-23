@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
-import {Navigation} from './navigation';
+import { Navigation } from './navigation';
+import { GlobalErrorWrapper } from 'components/GlobalErrorWrapper';
 import { LoadingWrapper } from 'components/LoadingWrapper';
 import { store } from 'store';
 
@@ -16,12 +17,14 @@ export default function App() {
   } else {
     return (
       <Provider store={store}>
-        <SafeAreaProvider>
+        <GlobalErrorWrapper>
           <LoadingWrapper>
-            <Navigation />
+            <SafeAreaProvider>
+              <Navigation />
+              <StatusBar style="light"/>
+            </SafeAreaProvider>
           </LoadingWrapper>
-          <StatusBar style="light"/>
-        </SafeAreaProvider>
+        </GlobalErrorWrapper>
       </Provider>
     );
   }
