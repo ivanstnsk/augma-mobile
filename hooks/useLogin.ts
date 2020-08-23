@@ -7,6 +7,7 @@ import { useLoader } from 'hooks/useLoader';
 type LoginHook = {
   userType: UserType;
   login: (data: UserCredentials) => void;
+  registration: (data: UserCredentials) => void;
   logout: () => void;
 }
 
@@ -21,6 +22,12 @@ export const useLogin = (): LoginHook => {
     Loader.hide();
   }
 
+  const registration = async (data: UserCredentials) => {
+    Loader.show();
+    await User.registration(data, dispatch);
+    Loader.hide();
+  }
+
   const logout = async () => {
     Loader.show();
     await User.logout(dispatch);
@@ -30,6 +37,7 @@ export const useLogin = (): LoginHook => {
   return {
     userType,
     login,
+    registration,
     logout,
   }
 }
