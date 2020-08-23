@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     borderTopColor: 'rgba(255, 255, 255, 0.04)',
     borderTopWidth: 1,
-    paddingHorizontal: 20,
     paddingVertical: 24,
   },
   navContainer: {
