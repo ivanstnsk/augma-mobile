@@ -38,6 +38,22 @@ export const login = async (data: UserCredentials, dispatch: ReducerDispatch<Use
   });
 };
 
+export const registration = async (data: UserCredentials, dispatch: ReducerDispatch<UserAction>) => {
+  return new Promise(async (resolve) => {
+    try {
+      await new Promise((res) => setTimeout(res, 800));
+      // const { token } = await UserApi.signIn(data);
+  
+      const token = '123';
+      dispatch(actionLoginSuccess(token));
+    } catch (error) {
+      dispatch(actionError(error));
+    } finally {
+      resolve();
+    }
+  });
+};
+
 export const logout = async (dispatch: ReducerDispatch<UserAction>) => {
   return new Promise(async (resolve) => {
     try {
