@@ -1,4 +1,5 @@
 import { UserCredentials } from 'types';
+import * as UserApi from 'api/user';
 
 export enum UserAction {
   USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS',
@@ -22,18 +23,19 @@ export const actionLogoutSuccess = () => ({
   payload: {},
 });
 
-export const login = async (data: UserCredentials, dispatch: ReducerDispatch<UserAction>) => {
-  return new Promise(async (resolve) => {
+export const login = async (
+  data: UserCredentials,
+  dispatch: ReducerDispatch<UserAction>,
+): Promise<void> => {
+  return new Promise(async (resolve, reject) => {
     try {
-      await new Promise((res) => setTimeout(res, 800));
-      // const { token } = await UserApi.signIn(data);
+      const { token } = await UserApi.login(data);
   
-      const token = '123';
       dispatch(actionLoginSuccess(token));
+      resolve();
     } catch (error) {
       dispatch(actionError(error));
-    } finally {
-      resolve();
+      reject(error);
     }
   });
 };
@@ -41,10 +43,8 @@ export const login = async (data: UserCredentials, dispatch: ReducerDispatch<Use
 export const registration = async (data: UserCredentials, dispatch: ReducerDispatch<UserAction>) => {
   return new Promise(async (resolve) => {
     try {
-      await new Promise((res) => setTimeout(res, 800));
-      // const { token } = await UserApi.signIn(data);
-  
-      const token = '123';
+      const { token } = await UserApi.registration(data);
+
       dispatch(actionLoginSuccess(token));
     } catch (error) {
       dispatch(actionError(error));
@@ -57,7 +57,7 @@ export const registration = async (data: UserCredentials, dispatch: ReducerDispa
 export const logout = async (dispatch: ReducerDispatch<UserAction>) => {
   return new Promise(async (resolve) => {
     try {
-      await new Promise((res) => setTimeout(res, 800));
+      await UserApi.logout();
       //
       dispatch(actionLogoutSuccess());
     } catch (error) {
