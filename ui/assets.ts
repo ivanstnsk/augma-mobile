@@ -22,6 +22,11 @@ export const icons = {
   appLogo: require('../assets/images/app-logo.png'),
   logoEye: require('../assets/images/logo-eye.png'),
   logoWrapper: require('../assets/images/logo-wrapper.png'),
+
+  welcomeTab1: require('../assets/images/welcome-tab1.png'),
+  welcomeTab2: require('../assets/images/welcome-tab2.png'),
+  welcomeTab3: require('../assets/images/welcome-tab3.png'),
+  welcomeTab4: require('../assets/images/welcome-tab4.png'),
 };
 
 export const getIconByName = (name: string) => {
