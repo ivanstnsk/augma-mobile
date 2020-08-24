@@ -62,6 +62,7 @@ export const Registration: React.FC = () => {
         <Button
           onPress={handleRegistrationPress}
           label="Регистрация"
+          color="primary"
         />
       </View>
     </ScreenWrapper>
