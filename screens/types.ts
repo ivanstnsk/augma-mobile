@@ -34,7 +34,15 @@ export type RootStackParamList = {
   // quest: undefined;
 };
 
+export type SetupTabParamList = {
+  welcome: undefined;
+  geolocation: undefined;
+  notification: undefined;
+  finish: undefined;
+}
+
 export type UserStackParamList = {
+  setup: undefined;
   main: undefined;
   quest: undefined;
   questStart: undefined;
