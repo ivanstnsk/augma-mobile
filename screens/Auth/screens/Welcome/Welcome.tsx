@@ -19,11 +19,14 @@ export const Welcome: React.FC = () => {
         <Button
           onPress={getPressHandler('login')}
           label="Вход"
+          color="primary"
         />
         <Spacer height={16} />
         <Button
           onPress={getPressHandler('registration')}
           label="Регистрация"
+          color="disabled"
+          disabled
         />
       </View>
     </ScreenWrapper>
