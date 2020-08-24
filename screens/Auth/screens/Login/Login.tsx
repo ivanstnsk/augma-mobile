@@ -23,6 +23,11 @@ export const Login: React.FC = () => {
     navigation.goBack();
   }, [navigation]);
 
+  React.useEffect(() => {
+    LoginForm.fields.email.onChange({ nativeEvent: { text: 'test1@test.com' }} as any);
+    LoginForm.fields.password.onChange({ nativeEvent: { text: '123456' }} as any);
+  }, []);
+
   return (
     <ScreenWrapper fullscreen>
       <AuthHeader title="Вход" />
@@ -54,6 +59,7 @@ export const Login: React.FC = () => {
         <Button
           onPress={handleLoginPress}
           label="Войти"
+          color="primary"
         />
       </View>
     </ScreenWrapper>
