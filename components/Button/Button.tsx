@@ -1,50 +1,84 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-type ButtonLookVariant = 'normal' | 'outline';
+export type ButtonLookVariant = 'normal' | 'outline';
+export type ButtonLookColor = 'primary' | 'secondary' | 'default' | 'disabled';
 
-type Props = {
+export type ButtonProps = {
   label: string;
   variant?: ButtonLookVariant;
+  color?: ButtonLookColor;
+  disabled?: boolean;
   onPress: () => void;
 }
 
-const getStyles = (variant: ButtonLookVariant) => {
-  switch (variant) {
-    case 'outline': {
-      return {
-        button: [
-          styles.button,
-          {
-            backgroundColor: 'transparent',
-            borderColor: '#919191',
-          },
-        ],
-        label: [
-          styles.label,
-          { color: '#919191' },
-        ],
-      };
-    }
-    case 'normal': default: return styles;
+const getColor = (color: ButtonLookColor): string => {
+  switch (color) {
+    case 'primary': return '#D12727';
+    case 'secondary': return '#31A127';
+    case 'disabled': return '#3C3C3C';
+    case 'default': default: return '#919191';
   }
 }
 
-export const Button: React.FC<Props> = ({
+const getStyles = (variant: ButtonLookVariant, color: ButtonLookColor) => {
+  const hexColor = getColor(color);
+
+  switch (variant) {
+    case 'outline': {
+      return {
+        button: {
+          backgroundColor: 'transparent',
+          borderColor: hexColor,
+        },
+        label: { color: hexColor },
+      };
+    }
+    case 'normal':
+    default: {
+      return {
+        button: {
+          backgroundColor: hexColor,
+          borderColor: hexColor,
+        },
+        label: {
+          color: color === 'disabled'
+            ? '#686868'
+            : '#FFFFFF',
+        },
+      };;
+    }
+  }
+}
+
+export const Button: React.FC<ButtonProps> = ({
   label,
   variant = 'normal',
+  color = 'default',
+  disabled,
   onPress,
 }) => {
-  const preparedStyles = getStyles(variant);
+  const addStyles = getStyles(variant, color);
+
+  const buttonStyles = [
+    styles.button,
+    addStyles.button,
+  ];
+
+  const labelStyles = [
+    styles.label,
+    addStyles.label,
+  ];
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={preparedStyles.button}
+      disabled={disabled}
+      style={buttonStyles}
     >
       <Text
         numberOfLines={1}
-        style={preparedStyles.label}
+        style={labelStyles}
       >
         {label}
       </Text>
@@ -61,13 +95,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 16,
-    backgroundColor: '#C62626',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#C62626',
   },
   label: {
     fontSize: 16,
-    color: '#FFFFFF',
   }
 });
