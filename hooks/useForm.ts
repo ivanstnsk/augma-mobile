@@ -17,6 +17,8 @@ type FormHook<FieldName extends string> = {
   getChangeFieldHandler: (field: FieldName) => 
     (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   validate: () => boolean;
+  markFieldError: (field: FieldName, error: string) => void;
+  markFieldsError: (fields: [FieldName, string][]) => void;
 }
 
 const prepareInitFields = <FieldName extends string>(initFields: FieldName[]): FormFields<FieldName> => {
@@ -66,6 +68,22 @@ export const useForm = <FieldName extends string>(
     return map.every(({ valid }) => valid);
   }, [fields]);
 
+  const markFieldError = React.useCallback((field: FieldName, error: string) => {
+    const nextFields = { ...fields };
+    nextFields[field].valid = false;
+    nextFields[field].error = error;
+    setFields(nextFields);
+  }, [fields, setFields]);
+
+  const markFieldsError = React.useCallback((markedFields: Array<[FieldName, string]>) => {
+    const nextFields = { ...fields };
+    markedFields.forEach(([ field, error ]) => {
+      nextFields[field].valid = false;
+      nextFields[field].error = error;
+    });
+    setFields(nextFields);
+  }, [fields, setFields]);
+
   React.useEffect(() => {
     const nextFields = { ...fields };
     const keys = Object.keys(nextFields) as FieldName[];
@@ -80,5 +98,7 @@ export const useForm = <FieldName extends string>(
     changeField,
     getChangeFieldHandler,
     validate,
+    markFieldError,
+    markFieldsError,
   }
 }
