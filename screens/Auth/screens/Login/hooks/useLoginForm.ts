@@ -60,7 +60,13 @@ export const useLoginForm = (): LoginFormHook => {
       Login.login({
         username: Form.fields.email.value,
         password: Form.fields.password.value,
-      });
+      }).then(() => {})
+        .catch((error) => {
+          Form.markFieldsError([
+            ['email', 'Неверно'],
+            ['password', 'Неверно'],
+          ])
+        });
     }
   }, []);
   
