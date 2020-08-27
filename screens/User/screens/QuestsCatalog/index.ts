@@ -1,0 +1,1 @@
+export { QuestsCatalog } from './QuestsCatalog';

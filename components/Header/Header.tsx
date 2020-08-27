@@ -10,12 +10,12 @@ type Props = {} & StackHeaderProps;
 const prepareTitle = (routeName: string): string => {
   switch (routeName) {
     case 'account': return 'Аккаунт';
-    case 'questsAll': return 'Квесты';
+    case 'questsCatalog': return 'Квесты';
     case 'progress': return 'Прогресс';
     case 'messages': return 'Сообщения';
     case 'inventory': return 'Инвентарь';
     case 'map': return 'Карта';
-    default: return routeName;
+    default: return routeName; 
   }
 }
 
