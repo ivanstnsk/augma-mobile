@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { usePreferences } from 'store/preferences';
 import { HeaderTitle } from 'components/HeaderTitle';
 import { headerSecondaryStyles } from 'ui/styles';
 import { UserStackParamList } from 'screens/types';
-import { useTutorial } from 'hooks';
 
 import { QuestStart } from './screens/QuestStart';
 import { MainTabNavigator } from './MainTabNavigator';
@@ -14,7 +14,7 @@ import { SetupNavigator } from './SetupNavigator';
 const UserStack = createStackNavigator<UserStackParamList>();
 
 export const UserNavigator: React.FC = () => {
-  const Tutorial = useTutorial();
+  const Preferences = usePreferences();
   const questActive = false;
 
   return (
@@ -38,7 +38,7 @@ export const UserNavigator: React.FC = () => {
         </>
       ) : (
         <>
-          {Tutorial.done ? (
+          {Preferences.firstSetupDone === 'done' ? (
             <>
               <UserStack.Screen
                 name="main"
