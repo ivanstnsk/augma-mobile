@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Header } from 'components/Header';
 import { BottomTabParamList, QuestsParamList, AccountParamList } from 'screens/types';
 
-import { QuestsAll } from './screens/QuestsAll';
+import { QuestsCatalog } from './screens/QuestsCatalog';
 import { Account } from './screens/Account';
 import { MainBottomTabs } from './components/MainBottomTabs';
 
@@ -16,8 +16,8 @@ const QuestsNavigator: React.FC = () => {
   return (
     <QuestsStack.Navigator>
       <QuestsStack.Screen
-        name="questsAll"
-        component={QuestsAll}
+        name="questsCatalog"
+        component={QuestsCatalog}
         options={{
           header: Header
         }}

@@ -20,7 +20,7 @@ export type BottomTabParamList = {
 };
 
 export type QuestsParamList = {
-  questsAll: undefined;
+  questsCatalog: undefined;
   questsFinished: undefined;
 };
 
