@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import * as PreferencesAll from 'store/preferences';
 import { ButtonProps } from 'components/Button';
-import { useTutorial } from 'hooks';
 
 type PagerHook = {
   prevButton: ButtonProps;
@@ -21,7 +21,7 @@ const INIT_NEXT_BUTTON: ButtonProps = {
 
 export const usePager = (activePage: string): PagerHook => {
   const navigation = useNavigation();
-  const Tutorial = useTutorial();
+  const Preferences = PreferencesAll.usePreferencesActions();
   const [prevButton, setPrevButton] = React.useState<ButtonProps>(INIT_PREV_BUTTON);
   const [nextButton, setNextButton] = React.useState<ButtonProps>(INIT_NEXT_BUTTON);
 
@@ -72,7 +72,7 @@ export const usePager = (activePage: string): PagerHook => {
         label: 'Завершить',
         color: 'primary',
         onPress: () => {
-          Tutorial.finish();
+          Preferences.setFirstSetupStatus('done');
         },
       }
     }
