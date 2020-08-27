@@ -11,6 +11,7 @@ const RootStack = createStackNavigator<RootStackParamList>();
 
 export const RootNavigator: React.FC = () => {
   const userType = useUserType();
+  
   const auth = userType === 'user';
 
   return (
