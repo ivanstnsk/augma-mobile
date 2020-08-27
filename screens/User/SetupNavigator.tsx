@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import { SetupTabParamList } from 'screens/types';
@@ -17,7 +16,7 @@ export const SetupNavigator: React.FC = () => {
     <SetupPager>
       <SetupTab.Navigator
         tabBar={(props) => <SetupHeader {...props} />}
-        swipeEnabled={true}
+        swipeEnabled={false}
       >
         <SetupTab.Screen
           name="welcome"
