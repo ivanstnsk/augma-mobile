@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll"
+    "test": "npx jest --watchAll"
   },
   "jest": {
     "preset": "jest-expo"
@@ -53,6 +53,7 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-preset-expo": "~8.1.0",
     "jest-expo": "~38.0.0",
+    "ts-jest": "^26.3.0",
     "typescript": "~3.9.5"
   },
   "private": true
