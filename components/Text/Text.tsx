@@ -7,11 +7,17 @@ type Props = {
 
 export const Text: React.FC<Props> = ({
   children,
+  style,
   ...props
 }) => {
+  const textStyles = [
+    styles.text,
+    style,
+  ];
+
   return (
       <RNText
-        style={styles.text}
+        style={textStyles}
         {...props}
       >
         {children}

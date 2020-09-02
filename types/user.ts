@@ -7,3 +7,6 @@ export type UserCredentials = {
   password: string;
 }
 
+export type UserInfo = {
+  name: string;
+};

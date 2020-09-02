@@ -5,22 +5,33 @@ export enum UserAction {
   USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS',
   USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS',
 
+  USER_USER_SUCCESS = 'USER_USER_SUCCESS',
+
   USER_ERROR = 'USER_ERROR',
 }
+
+export type UserActionPayload =
+UserApi.AuthRes & 
+UserApi.UserRes;
 
 export const actionError = (error: Record<string, unknown>) => ({
   type: UserAction.USER_ERROR,
   payload: error,
 });
 
-export const actionLoginSuccess = (token: string) => ({
+export const actionLoginSuccess = (payload: UserApi.AuthRes) => ({
   type: UserAction.USER_LOGIN_SUCCESS,
-  payload: token,
+  payload,
 });
 
 export const actionLogoutSuccess = () => ({
   type: UserAction.USER_LOGOUT_SUCCESS,
   payload: {},
+});
+
+export const actionUserSuccess = (payload: UserApi.UserRes) => ({
+  type: UserAction.USER_USER_SUCCESS,
+  payload,
 });
 
 export const login = async (
@@ -29,9 +40,11 @@ export const login = async (
 ): Promise<void> => {
   return new Promise(async (resolve, reject) => {
     try {
-      const { token } = await UserApi.login(data);
-  
-      dispatch(actionLoginSuccess(token));
+      const authRes = await UserApi.login(data);
+      const userRes = await UserApi.user();
+      
+      dispatch(actionLoginSuccess(authRes));
+      dispatch(actionUserSuccess(userRes));
       resolve();
     } catch (error) {
       dispatch(actionError(error));
@@ -43,9 +56,11 @@ export const login = async (
 export const registration = async (data: UserCredentials, dispatch: ReducerDispatch<UserAction>) => {
   return new Promise(async (resolve) => {
     try {
-      const { token } = await UserApi.registration(data);
+      const authRes = await UserApi.registration(data);
+      const userRes = await UserApi.user();
 
-      dispatch(actionLoginSuccess(token));
+      dispatch(actionLoginSuccess(authRes));
+      dispatch(actionUserSuccess(userRes));
     } catch (error) {
       dispatch(actionError(error));
     } finally {

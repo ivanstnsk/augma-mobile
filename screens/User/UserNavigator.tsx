@@ -45,7 +45,6 @@ export const UserNavigator: React.FC = () => {
                 component={MainTabNavigator}
                 options={{
                   headerShown: false,
-                  animationTypeForReplace: questActive ? 'push' : 'pop',
                 }}
               />
               <UserStack.Screen
