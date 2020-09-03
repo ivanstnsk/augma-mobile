@@ -46,6 +46,7 @@ export type UserStackParamList = {
   main: undefined;
   quest: undefined;
   questStart: undefined;
+  questStartTimer: undefined;
 };
 
 export type QuestBottomTabParamList = {
