@@ -90,8 +90,7 @@ export const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    flex: 1,
-    height: 'auto',
+    minHeight: 56,
     maxHeight: 56,
     justifyContent: 'center',
     alignItems: 'center',
