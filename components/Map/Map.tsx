@@ -6,10 +6,11 @@ import { RegionMarker } from './components';
 import { mapStyles } from './mapStyles';
 
 type Props = {
-
+  visible: boolean;
 } & ViewProps;
 
 export const Map: React.FC<Props> = ({
+  visible,
   style,
 }) => {
   const wrapperStyles = [
@@ -30,24 +31,26 @@ export const Map: React.FC<Props> = ({
 
   return (
     <View style={wrapperStyles}>
-      <MapView
-        style={styles.map}
-        provider={PROVIDER_GOOGLE}
-        customMapStyle={mapStyles}
-        showsUserLocation
-        followsUserLocation
-        loadingEnabled
-        pointerEvents="none"
-        camera={camera}
-      >
-        <RegionMarker
-          center={{
-            latitude: 50.002230,
-            longitude: 36.238924,
-          }}
-          radius={500}
-        />
-      </MapView>
+      {visible && (
+        <MapView
+          style={styles.map}
+          provider={PROVIDER_GOOGLE}
+          customMapStyle={mapStyles}
+          loadingEnabled
+          loadingBackgroundColor="#1F1F1F"
+          loadingIndicatorColor="#D12727"
+          pointerEvents="none"
+          camera={camera}
+        >
+          <RegionMarker
+            center={{
+              latitude: 50.002230,
+              longitude: 36.238924,
+            }}
+            radius={500}
+          />
+        </MapView>
+      )}
     </View>
   );
 }
