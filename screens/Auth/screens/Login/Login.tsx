@@ -54,12 +54,14 @@ export const Login: React.FC = () => {
           onPress={handleBackPress}
           label="Назад"
           variant="outline"
+          style={styles.button}
         />
         <Spacer width={16} />
         <Button
           onPress={handleLoginPress}
           label="Войти"
           color="primary"
+          style={styles.button}
         />
       </View>
     </ScreenWrapper>
@@ -75,5 +77,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingBottom: 24,
+  },
+  button: {
+    flex: 1,
   }
 });
