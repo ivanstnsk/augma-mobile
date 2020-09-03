@@ -1,21 +1,28 @@
 import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {Dimensions} from 'react-native';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 import { usePreferences } from 'store/preferences';
+import { useQuest } from 'store/quest';
 import { HeaderTitle } from 'components/HeaderTitle';
-import { headerSecondaryStyles } from 'ui/styles';
+import { headerSecondaryStyles, cardStyleInterpolator } from 'ui/styles';
 import { UserStackParamList } from 'screens/types';
 
 import { QuestStart } from './screens/QuestStart';
+import { QuestStartTimer } from './screens/QuestStartTimer';
 import { MainTabNavigator } from './MainTabNavigator';
 import { QuestTabNavigator } from './QuestTabNavigator';
 import { SetupNavigator } from './SetupNavigator';
+
+const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
 const UserStack = createStackNavigator<UserStackParamList>();
 
 export const UserNavigator: React.FC = () => {
   const Preferences = usePreferences();
-  const questActive = false;
+  const Quest = useQuest();
+
+  const questActive = Quest.id;
 
   return (
     <UserStack.Navigator
@@ -31,7 +38,6 @@ export const UserNavigator: React.FC = () => {
             component={QuestTabNavigator}
             options={{
               headerShown: false,
-              animationTypeForReplace: questActive ? 'push' : 'pop',
             }}
           />
           {/* TODO: add quest stack modals here */}
@@ -52,6 +58,21 @@ export const UserNavigator: React.FC = () => {
                 component={QuestStart}
                 options={{
                   headerShown: false,
+                }}
+              />
+              <UserStack.Screen
+                name="questStartTimer"
+                component={QuestStartTimer}
+                options={{
+                  ...TransitionPresets.ModalSlideFromBottomIOS,
+                  animationEnabled: true,
+                  headerShown: false,
+                  cardStyle: { backgroundColor: 'transparent' },
+                  cardOverlayEnabled: true,
+                  cardStyleInterpolator,
+                  gestureResponseDistance: {
+                    vertical: SCREEN_HEIGHT,
+                  }
                 }}
               />
               {/* TODO: add main stack modals here */}
