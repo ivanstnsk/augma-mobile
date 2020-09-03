@@ -35,8 +35,8 @@ export const CoverWrapper: React.FC<Props> = ({
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
-  const minHeight = insets.top + 40;
-  const maxHeight = insets.top + 40 + 200;
+  const minHeight = insets.top + 48;
+  const maxHeight = insets.top + 48 + 200;
 
   const handleBackPress = React.useCallback(() => {
     navigation.goBack();
@@ -47,7 +47,7 @@ export const CoverWrapper: React.FC<Props> = ({
       headerMinHeight={minHeight}
       headerMaxHeight={maxHeight}
       extraScrollHeight={100}
-      navbarColor="#1F1F1F"
+      navbarColor="#181818"
       title={TitleComponent}
       renderContent={() => ContentComponent}
       backgroundImage={require('../../assets/images/quest-1-cover.png')}
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   navContainer: {
     width: '100%',
-    height: 40,
+    height: 48,
   },
   backButton: {
     height: '100%',
