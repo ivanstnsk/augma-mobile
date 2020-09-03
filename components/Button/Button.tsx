@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, TouchableOpacityProps } from 'react-native';
 
 export type ButtonLookVariant = 'normal' | 'outline';
 export type ButtonLookColor = 'primary' | 'secondary' | 'default' | 'disabled';
@@ -10,7 +10,7 @@ export type ButtonProps = {
   color?: ButtonLookColor;
   disabled?: boolean;
   onPress: () => void;
-}
+} & TouchableOpacityProps;
 
 const getColor = (color: ButtonLookColor): string => {
   switch (color) {
@@ -56,6 +56,7 @@ export const Button: React.FC<ButtonProps> = ({
   variant = 'normal',
   color = 'default',
   disabled,
+  style,
   onPress,
 }) => {
   const addStyles = getStyles(variant, color);
@@ -63,6 +64,7 @@ export const Button: React.FC<ButtonProps> = ({
   const buttonStyles = [
     styles.button,
     addStyles.button,
+    style,
   ];
 
   const labelStyles = [
