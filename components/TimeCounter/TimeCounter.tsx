@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Animated } from 'react-native';
+import { StyleSheet, View, Text, Animated, Vibration } from 'react-native';
 
 type Props = {
   fromTime: number;
@@ -35,13 +35,14 @@ export const TimeCounter: React.FC<Props> = ({
   React.useEffect(() => {
     if (time > 0) {
       animateNextChar(time - 1);
+      Vibration.vibrate([0, 200]);
     } else if (time === 0) {
       onDidFinish(fromTime);
     }
   }, [time]);
 
   React.useEffect(() => {
-    setTimeout(() => setTime(fromTime), 1000);
+    setTime(fromTime);
   }, [fromTime]);
 
   const charContainerStyles = [
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   char: {
-    fontSize: 100,
+    fontSize: 48,
     color: '#fff',
   },
   infoContainer: {},
