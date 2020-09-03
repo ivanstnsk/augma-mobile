@@ -23,7 +23,7 @@ export const Account: React.FC = () => {
       </View>
       <Button
         onPress={handleLogout}
-        label="Logout"
+        label="Выйти"
         variant="normal"
         color="primary"
       />
