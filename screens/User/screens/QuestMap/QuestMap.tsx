@@ -1,21 +1,16 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 import { ScreenWrapper } from 'components/ScreenWrapper';
-
-import { mapStyles } from './mapStyles';
+import { Map } from 'components/Map';
 
 export const QuestMap: React.FC = () => {
   return (
     <ScreenWrapper>
       <View style={styles.wrapper}>
-        <MapView
+        <Map
+          visible
           style={styles.map}
-          provider={PROVIDER_GOOGLE}
-          customMapStyle={mapStyles}
-          followsUserLocation
-          loadingEnabled
         />
       </View>
     </ScreenWrapper>
