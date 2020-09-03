@@ -27,23 +27,12 @@ export const icons = {
   welcomeTab2: require('../assets/images/welcome-tab2.png'),
   welcomeTab3: require('../assets/images/welcome-tab3.png'),
   welcomeTab4: require('../assets/images/welcome-tab4.png'),
+
+  infoQuestion: require('../assets/images/info-question.png'),
+  infoCondition: require('../assets/images/info-condition.png'),
+  infoLimit: require('../assets/images/info-limit.png'),
 };
 
-export const getIconByName = (name: string) => {
-  switch (name) {
-    case 'account': return icons.account;
-    case 'quests': return icons.quests;
-    case 'accountActive': return icons.accountActive;
-    case 'questsActive': return icons.questsActive;
+export type AssetIcon = keyof typeof icons;
 
-    case 'questProgress': return icons.questProgress;
-    case 'questProgressActive': return icons.questProgressActive;
-    case 'questMessages': return icons.questMessages;
-    case 'questMessagesActive': return icons.questMessagesActive;
-    case 'questInventory': return icons.questInventory;
-    case 'questInventoryActive': return icons.questInventoryActive;
-    case 'questMap': return icons.questMap;
-    case 'questMapActive': return icons.questMapActive;
-    default: return icons.account;
-  }
-};
+export const getIconByName = (name: AssetIcon) => icons[name];
