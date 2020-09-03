@@ -7,6 +7,9 @@ import { ScreenWrapper } from 'components/ScreenWrapper';
 import { CoverWrapper } from 'components/CoverWrapper';
 import { Button } from 'components/Button';
 import { TimeCounter } from 'components/TimeCounter';
+import { Map } from 'components/Map';
+
+import { InfoCard } from 'screens/User/components/InfoCard';
 
 import { Title, Description } from './components';
 
@@ -42,6 +45,11 @@ export const QuestStart: React.FC = () => {
       opacity: getReadyContainerOpacity,
       transform: [ { translateY: getReadyContainerHeight } ],
     }
+  ];
+
+  const buttonStyles = [
+    styles.button,
+    { marginBottom: 32 + insets.bottom },
   ];
 
   const showGetReady = React.useCallback(() => {
@@ -108,38 +116,34 @@ export const QuestStart: React.FC = () => {
       <Animated.View style={infoContainerStyles}>
         <CoverWrapper>
           <Title title="Вакцина" />
-          <Description
-            level={3}
-            limitation={-1}
-            description={{
-              goal: 'Передать данные для создания вакцины координатору. Но будь осторожен: приспешники корпорации тоже ведут охоту за данными! Решай с умом кому довериться а кому нет.',
-              points: [
-                {
-                  id: 'check1',
-                  name: 'Тревожное сообщение'
-                },
-                {
-                  id: 'check2',
-                  name: 'Ключ к координатам'
-                },
-                {
-                  id: 'check3',
-                  name: 'Союзники и враги'
-                },
-                {
-                  id: 'check4',
-                  name: 'Выбор'
-                },
-              ],
-            }}
-          />
+          <View style={styles.coverContainer}>
+            <View style={styles.infoCardsContainer}>
+              <InfoCard
+                title="Что нужно сделать?"
+                text="Передать курьеру как можно быстрее секретное письмо, которое вы получили на 1 чек-поинте. Оно должно быть в инвентаре"
+                iconName="infoQuestion"
+              />
+              <InfoCard
+                title="Ограничения"
+                text="Передать курьеру как можно быстрее секретное письмо, которое вы получили на 1 чек-поинте. Оно должно быть в инвентаре"
+                iconName="infoLimit"
+              />
+              <InfoCard
+                title="Условия прохождения"
+                text="Передать курьеру как можно быстрее секретное письмо, которое вы получили на 1 чек-поинте. Оно должно быть в инвентаре"
+                iconName="infoCondition"
+              />
+            </View>
+            <Map style={styles.mapWrapper} />
+            <Button
+              label="Начать квест"
+              variant="normal"
+              color="primary"
+              onPress={showGetReady}
+              style={buttonStyles}
+            />
+          </View>
         </CoverWrapper>
-        <View style={footerContainerStyles}>
-          <Button
-            label="Начать квест"
-            onPress={showGetReady}
-          />
-        </View>
       </Animated.View>
       <Animated.View style={getReadyContainerStyles}>
         <View style={styles.getReadyInner}>
@@ -178,6 +182,13 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute',
   },
+  coverContainer: {
+    flex: 1,
+  },
+  mapWrapper: {
+    width: '100%',
+    height: 375,
+  },
   footerContainer: {
     paddingTop: 24,
     paddingHorizontal: 20,
@@ -195,5 +206,16 @@ const styles = StyleSheet.create({
     height: '100%',
     ...StyleSheet.absoluteFillObject,
     opacity: 0.3,
+  },
+  infoCardsContainer: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    marginHorizontal: 20,
+    marginVertical: 8,
+  },
+  button: {
+    marginHorizontal: 20,
+    marginVertical: 32,
   }
 });

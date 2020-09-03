@@ -25,8 +25,8 @@ export const QuestsCatalog: React.FC = () => {
   const navigation = useNavigation();
 
   const getPressHandler = React.useCallback((questId: string) => () => {
-    // navigation.navigate('questStart');
-    console.log('quest', questId);
+    navigation.navigate('questStart');
+    // console.log('quest', questId);
   }, []);
 
   const renderItem = getItemRenderer(getPressHandler);

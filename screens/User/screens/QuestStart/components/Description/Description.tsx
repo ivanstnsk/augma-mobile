@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 import { ComplexityBar } from 'components/ComplexityBar';
 
@@ -80,18 +80,6 @@ export const Description: React.FC<Props> = ({
         </View>
         <View style={styles.rightCell}>
           {points.map(renderCheckPoint)}
-        </View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.leftCell}>
-          <Text style={styles.title}>Локация</Text>
-        </View>
-        <View style={styles.rightCell}>
-          <Image
-            style={styles.locationImage}
-            source={require('assets/images/location-cap.png')}
-            resizeMode="cover"
-          />
         </View>
       </View>
     </View>
