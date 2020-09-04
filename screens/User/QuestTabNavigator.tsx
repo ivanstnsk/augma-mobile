@@ -9,13 +9,11 @@ import {
   QuestProgressParamList,
   QuestMessagesParamList,
   QuestInventoryParamList,
-  QuestMapParamList,
 } from 'screens/types';
 
 import { QuestProgress } from './screens/QuestProgress';
 import { QuestMessages } from './screens/QuestMessages';
 import { QuestInventory } from './screens/QuestInventory';
-import { QuestMap } from './screens/QuestMap';
 import { QuestBottomTabs } from './components/QuestBottomTabs';
 
 const QuestProgressStack = createStackNavigator<QuestProgressParamList>();
@@ -66,22 +64,6 @@ const QuestInventoryNavigator: React.FC = () => {
   );
 }
 
-const QuestMapStack = createStackNavigator<QuestMapParamList>();
-
-const QuestMapNavigator: React.FC = () => {
-  return (
-    <QuestMapStack.Navigator>
-      <QuestMapStack.Screen
-        name="map"
-        component={QuestMap}
-        options={{
-          header: Header
-        }}
-      />
-    </QuestMapStack.Navigator>
-  );
-}
-
 const QuestBottomTab = createBottomTabNavigator<QuestBottomTabParamList>();
 
 export const QuestTabNavigator: React.FC = () => {
@@ -101,10 +83,6 @@ export const QuestTabNavigator: React.FC = () => {
       <QuestBottomTab.Screen
         name="questInventory"
         component={QuestInventoryNavigator}
-      />
-      <QuestBottomTab.Screen
-        name="questMap"
-        component={QuestMapNavigator}
       />
     </QuestBottomTab.Navigator>
   );

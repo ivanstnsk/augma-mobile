@@ -5,10 +5,12 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import { usePreferences } from 'store/preferences';
 import { useQuest } from 'store/quest';
 import { HeaderTitle } from 'components/HeaderTitle';
-import { headerSecondaryStyles, cardStyleInterpolator } from 'ui/styles';
+import * as UIStyles from 'ui/styles';
 import { UserStackParamList } from 'screens/types';
+import { useLoader } from 'hooks/useLoader';
 
 import { QuestStart } from './screens/QuestStart';
+import { QuestMap } from './screens/QuestMap';
 import { QuestStartTimer } from './screens/QuestStartTimer';
 import { MainTabNavigator } from './MainTabNavigator';
 import { QuestTabNavigator } from './QuestTabNavigator';
@@ -19,15 +21,21 @@ const SCREEN_HEIGHT = Dimensions.get('screen').height;
 const UserStack = createStackNavigator<UserStackParamList>();
 
 export const UserNavigator: React.FC = () => {
+  const [questActive, setQuestActive] = React.useState(false);
+  const Loader = useLoader();
   const Preferences = usePreferences();
   const Quest = useQuest();
 
-  const questActive = Quest.id;
+  React.useEffect(() => {
+    Loader.show('solid');
+    setTimeout(() => setQuestActive(!!Quest.id), 300);
+    setTimeout(Loader.hide, 600);
+  }, [Quest.id]);
 
   return (
     <UserStack.Navigator
       screenOptions={{
-        ...headerSecondaryStyles,
+        ...UIStyles.headerSecondaryStyles,
         headerTitle: HeaderTitle,
       }}
     >
@@ -38,6 +46,7 @@ export const UserNavigator: React.FC = () => {
             component={QuestTabNavigator}
             options={{
               headerShown: false,
+              animationEnabled: false
             }}
           />
           {/* TODO: add quest stack modals here */}
@@ -51,6 +60,7 @@ export const UserNavigator: React.FC = () => {
                 component={MainTabNavigator}
                 options={{
                   headerShown: false,
+                  animationEnabled: false
                 }}
               />
               <UserStack.Screen
@@ -69,7 +79,7 @@ export const UserNavigator: React.FC = () => {
                   headerShown: false,
                   cardStyle: { backgroundColor: 'transparent' },
                   cardOverlayEnabled: true,
-                  cardStyleInterpolator,
+                  cardStyleInterpolator: UIStyles.modalDefaultInterpolator,
                   gestureResponseDistance: {
                     vertical: SCREEN_HEIGHT,
                   }
@@ -88,6 +98,21 @@ export const UserNavigator: React.FC = () => {
           )}
         </>
       )}
+      <UserStack.Screen
+        name="questMap"
+        component={QuestMap}
+        options={{
+          ...TransitionPresets.ModalPresentationIOS,
+          animationEnabled: true,
+          headerShown: false,
+          cardStyle: { backgroundColor: 'transparent' },
+          cardOverlayEnabled: true,
+          cardStyleInterpolator: UIStyles.modalOpacityInterpolator,
+          gestureResponseDistance: {
+            vertical: 0,
+          }
+        }}
+      />
     </UserStack.Navigator>
   );
 }

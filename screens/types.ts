@@ -31,7 +31,6 @@ export type AccountParamList = {
 export type RootStackParamList = {
   user: undefined;
   auth: undefined;
-  // quest: undefined;
 };
 
 export type SetupTabParamList = {
@@ -45,6 +44,7 @@ export type UserStackParamList = {
   setup: undefined;
   main: undefined;
   quest: undefined;
+  questMap: undefined;
   questStart: undefined;
   questStartTimer: undefined;
 };
@@ -53,7 +53,6 @@ export type QuestBottomTabParamList = {
   questProgress: undefined;
   questMessages: undefined;
   questInventory: undefined;
-  questMap: undefined;
 };
 
 export type QuestProgressParamList = {
@@ -66,8 +65,4 @@ export type QuestMessagesParamList = {
 
 export type QuestInventoryParamList = {
   inventory: undefined;
-};
-
-export type QuestMapParamList = {
-  map: undefined;
 };

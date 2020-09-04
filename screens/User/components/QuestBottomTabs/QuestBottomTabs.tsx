@@ -32,7 +32,7 @@ const getTabRenderer = (getPressHandler: (routeName: string) => () => void, acti
     const labelStyles = active
       ? [styles.tabLabel, styles.tabLabelActive]
       : styles.tabLabel;
-    const iconName = active ? `${name}Active` : name;
+    const iconName = (active ? `${name}Active` : name) as Assets.AssetIcon;
   
     return (
       <TouchableOpacity
@@ -61,6 +61,17 @@ export const QuestBottomTabs: React.FC<Props> = ({
     paddingBottom: insets.bottom,
   };
 
+  const routes = [
+    ...state.routes.map(({ key, name }) => ({
+      key,
+      name,
+    })),
+    {
+      key: 'questMap',
+      name: 'questMap'
+    },
+  ];
+
   const getTabPressHandler = React.useCallback((routeName: string) => () => {
     navigation.navigate(routeName);
   }, []);
@@ -68,7 +79,7 @@ export const QuestBottomTabs: React.FC<Props> = ({
   return (
     <View style={wrapperStyles}>
       <View style={styles.container}>
-        {state.routes.map((route, index) => {
+        {routes.map((route, index) => {
           const active = state.index === index;
           const renderTab = getTabRenderer(getTabPressHandler, active);
 

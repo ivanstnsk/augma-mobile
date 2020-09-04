@@ -23,11 +23,17 @@ export const RootNavigator: React.FC = () => {
         <RootStack.Screen
           name="user"
           component={UserNavigator}
+          options={{
+            animationEnabled: false,
+          }}
         />
       ) : (
         <RootStack.Screen
           name="auth"
           component={AuthNavigator}
+          options={{
+            animationEnabled: false,
+          }}
         />
       )}
     </RootStack.Navigator>
