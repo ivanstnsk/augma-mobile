@@ -10,7 +10,7 @@ export const headerSecondaryStyles = {
   headerBackTitle: ' ',
 };
 
-export const cardStyleInterpolator = (props: StackCardInterpolationProps) => {
+export const modalDefaultInterpolator = (props: StackCardInterpolationProps) => {
   const { current: { progress } } = props;
   const cardTranslateY = progress.interpolate({
     inputRange: [0, 1],
@@ -24,6 +24,26 @@ export const cardStyleInterpolator = (props: StackCardInterpolationProps) => {
         outputRange: [0, 0.25, 0.7, 1],
       }),
       transform: [{ translateY: cardTranslateY }],
+    },
+    overlayStyle: {
+      opacity: progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 0.57],
+        extrapolate: 'clamp',
+      }),
+    },
+  });
+};
+
+export const modalOpacityInterpolator = (props: StackCardInterpolationProps) => {
+  const { current: { progress } } = props;
+
+  return ({
+    cardStyle: {
+      opacity: progress.interpolate({
+        inputRange: [0, 0.5, 0.9, 1],
+        outputRange: [0, 0.25, 0.7, 1],
+      }),
     },
     overlayStyle: {
       opacity: progress.interpolate({
