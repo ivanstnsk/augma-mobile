@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface LoadingContext {
-  show: () => void;
+  show: (bgVariant?: 'transparent' | 'solid') => void;
   hide: () => void;
   visible: boolean;
 }

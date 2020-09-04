@@ -12,9 +12,15 @@ export const LoadingWrapper: React.FC<Props> = ({
   children,
 }) => {
   const [visible, setVisible] = React.useState(false);
+  const [bgVariant, setBgVariant] = React.useState<'transparent' | 'solid'>('transparent');
 
   const context: LoadingContext = {
-    show: () => setVisible(true),
+    show: (bgVariant?: 'transparent' | 'solid') => {
+      setVisible(true);
+      if (bgVariant) {
+        setBgVariant(bgVariant);
+      }
+    },
     hide: () => setVisible(false),
     visible,
   };
@@ -30,7 +36,10 @@ export const LoadingWrapper: React.FC<Props> = ({
   return (
     <LoadingContext.Provider value={context}>
       {children}
-      <LoadingOverlay visible={visible} />
+      <LoadingOverlay
+        visible={visible}
+        bgVariant={bgVariant}
+      />
     </LoadingContext.Provider>
   );
 }

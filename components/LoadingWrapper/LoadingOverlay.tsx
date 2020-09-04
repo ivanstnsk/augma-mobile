@@ -8,10 +8,12 @@ const ANIMATION_ROTATE_TIME = 2000;
 
 type Props = {
   visible: boolean;
+  bgVariant: 'transparent' | 'solid';
 }
 
 export const LoadingOverlay: React.FC<Props> = ({
   visible,
+  bgVariant,
 }) => {
   const [animating, setAnimating] = React.useState(false);
   const opacity = React.useRef(new Animated.Value(0)).current;
@@ -24,6 +26,10 @@ export const LoadingOverlay: React.FC<Props> = ({
 
   const wrapperStyles = [
     styles.wrapper,
+    { backgroundColor: bgVariant === 'transparent'
+      ? 'rgba(0,0,0,0.6)'
+      : '#1C1212',
+    },
     { opacity },
   ];
 
