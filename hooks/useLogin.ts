@@ -1,26 +1,27 @@
 import { useDispatch } from 'react-redux';
 
-import { UserType, UserCredentials } from 'types';
-import * as User from 'store/user';
+import { Session } from 'types/models/Session';
+import { Models } from 'types/models/models';
+import * as SessionActions from 'store/session';
 import { useLoader } from 'hooks/useLoader';
 
 type LoginHook = {
-  userType: UserType;
-  login: (data: UserCredentials) => Promise<void>;
-  registration: (data: UserCredentials) => void;
-  logout: () => void;
+  userType: Models.UserType;
+  login: (data: Session.Request.Login) => Promise<void>;
+  registration: (data: Session.Request.Registration) => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 export const useLogin = (): LoginHook => {
   const dispatch = useDispatch();
   const Loader = useLoader();
-  const userType = User.useUserType();
+  const { token } = SessionActions.useSession();
 
-  const login = async (data: UserCredentials): Promise<void> => {
+  const login = async (data: Session.Request.Login): Promise<void> => {
     return new Promise(async (resolve, reject) => {
       Loader.show('solid');
       try {
-        await User.login(data, dispatch);
+        await SessionActions.login(data, dispatch);
         resolve();
       } catch (error) {
         reject(error);
@@ -29,20 +30,20 @@ export const useLogin = (): LoginHook => {
     });
   }
 
-  const registration = async (data: UserCredentials) => {
+  const registration = async (data: Session.Request.Registration) => {
     Loader.show('solid');
-    await User.registration(data, dispatch);
+    await SessionActions.registration(data, dispatch);
     Loader.hide();
   }
 
   const logout = async () => {
     Loader.show('solid');
-    await User.logout(dispatch);
+    await SessionActions.logout(dispatch);
     Loader.hide();
   }
 
   return {
-    userType,
+    userType: token ? 'user' : 'guest',
     login,
     registration,
     logout,

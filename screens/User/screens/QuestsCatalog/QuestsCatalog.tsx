@@ -2,12 +2,13 @@ import * as React from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { Quest } from 'types';
+import { Models } from 'types/models/models';
+
 import { useQuests } from './hooks';
 import { QuestCard } from './components';
 
 const getItemRenderer = (getPressHandler: (id: string) => () => void) => {
-  return ({ item }: { item: Quest }): JSX.Element => {
+  return ({ item }: { item: Models.QuestShortOverview }): JSX.Element => {
     const onPress = getPressHandler(item.id);
 
     return (
@@ -33,7 +34,7 @@ export const QuestsCatalog: React.FC = () => {
 
   return (
     <FlatList
-      data={Quests.items}
+      data={Quests.quests.items}
       refreshing={Quests.refreshing}
       renderItem={renderItem}
       onRefresh={Quests.onRefresh}

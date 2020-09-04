@@ -1,11 +1,9 @@
-import { Pagination, Quest } from 'types';
+import { Quests } from 'types/models/Quests';
 
 import { client } from './client';
 
-type QuestsRes = {
-  items: Quest[];
-};
-
-export const getQuests = (params: Pagination) => {
-  return client.get<Pagination, QuestsRes>('/v1/quests', { params });
+export const quests = (params: Quests.Request.Quests) => {
+  type Req = Quests.Request.Quests;
+  type Res = Quests.Response.Quests;
+  return client.get<Req, Res>('/v1/quests', { params });
 }

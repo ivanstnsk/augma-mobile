@@ -1,6 +1,6 @@
 import Axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
 
-const BASE_URL = 'https://augma-mobile.herokuapp.com/';
+const BASE_URL = 'http://localhost:3000';
 
 export const client = Axios.create({
   baseURL: BASE_URL,

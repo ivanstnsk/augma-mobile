@@ -1,32 +1,34 @@
-import { Quest, Pagination } from 'types';
 import * as QuestsApi from 'api/quests';
+import { Quests } from 'types/models/Quests';
 
 export enum QuestsAction {
-  QUESTS_GET_SUCCESS = 'QUESTS_GET_SUCCESS',
-  QUESTS_GET_ERROR = 'QUESTS_GET_ERROR',
+  QUESTS_SUCCESS = 'QUESTS_SUCCESS',
+  QUESTS_ERROR = 'QUESTS_ERROR',
 }
 
-export type QuestsPayload =
-| { items: Quest[] }
-| any;
-
-export const actionQuestsGetSuccess = (payload: QuestsPayload) => ({
-  type: QuestsAction.QUESTS_GET_SUCCESS,
+export const actionQuestsSuccess = (payload: Quests.Response.Quests) => ({
+  type: QuestsAction.QUESTS_SUCCESS,
   payload,
 });
 
-export const actionQuestsGetError = (error: any) => ({
-  type: QuestsAction.QUESTS_GET_ERROR,
+export const actionQuestsError = (error: any) => ({
+  type: QuestsAction.QUESTS_ERROR,
   payload: error,
 });
 
-export const getQuests = async (params: Pagination, dispatch: ReducerDispatch<QuestsAction>) => {
-  try {
-    const res = await QuestsApi.getQuests(params);
-    const { items } = res;
+export const quests = async (
+  params: Quests.Request.Quests,
+  dispatch: ReducerDispatch<QuestsAction>,
+): Promise<void> => {
+  return new Promise(async (resolve) => {
+    try {
+      const res = await QuestsApi.quests(params);
 
-    dispatch(actionQuestsGetSuccess({ items }));
-  } catch (error) {
-    dispatch(actionQuestsGetError(error));
-  }
+      dispatch(actionQuestsSuccess(res));
+    } catch (error) {
+      dispatch(actionQuestsError(error));
+    } finally {
+      resolve();
+    }
+  });
 }

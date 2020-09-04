@@ -5,6 +5,7 @@ import { preferencesReducer } from './preferences/preferencesReducer';
 import { questsReducer } from './quests/questsReducer';
 import { globalErrorReducer } from './globalError/globalErrorReducer';
 import { questReducer } from './quest/questReducer';
+import { sessionReducer } from './session/sessionReducer';
 
 import { middlewares } from './middlewares'
 
@@ -14,6 +15,7 @@ const rootReducer = Redux.combineReducers({
   quests: questsReducer,
   globalError: globalErrorReducer,
   quest: questReducer,
+  session: sessionReducer,
 });
 
 export type RootStore = ReturnType<typeof rootReducer>;

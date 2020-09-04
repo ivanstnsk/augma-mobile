@@ -1,11 +1,11 @@
 import * as React from 'react';
 
+import { Models } from 'types/models/models';
 import { useLoader } from 'hooks/useLoader';
 import * as QuestsAll from 'store/quests';
-import { Quest } from 'types';
 
 type QuestsHook = {
-  items: Quest[];
+  quests: Models.Quests;
   refreshing: boolean;
   onRefresh: () => void;
 }
@@ -19,8 +19,16 @@ export const useQuests = (): QuestsHook => {
   const handleRefresh = React.useCallback(() => {
     Loader.show();
     setRefreshing(true);
+
+    const params = {
+      pagination: {
+        offset: 0,
+        limit: 50,
+      },
+    };
+
     QuestsActions
-      .getQuests({ offset: 0, limit: 50 })
+      .quests(params)
       .finally(() => {
         Loader.hide();
         setRefreshing(false);
@@ -28,14 +36,11 @@ export const useQuests = (): QuestsHook => {
   }, []);
 
   React.useEffect(() => {
-    Loader.show();
-    QuestsActions
-      .getQuests({ offset: 0, limit: 50 })
-      .finally(Loader.hide);
+    handleRefresh();
   }, []);
 
   return {
-    items: Quests.items,
+    quests: Quests,
     refreshing,
     onRefresh: handleRefresh,
   }

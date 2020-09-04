@@ -2,11 +2,12 @@ import * as React from 'react';
 import { StyleSheet, TouchableOpacity, Image, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import { Models } from 'types/models/models';
 import * as Assets from 'ui/assets';
 import { ComplexityBar } from 'components/ComplexityBar';
 
 type Props = {
-  data: QuestInfo;
+  data: Models.QuestShortOverview;
   onPress: () => void;
 }
 

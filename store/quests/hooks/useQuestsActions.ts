@@ -1,21 +1,22 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { Pagination } from 'types';
+
+import { Quests } from 'types/models/Quests';
 
 import * as Actions from '../questsActions';
 
 type QuestsActionsHook = {
-  getQuests: (params: Pagination) => Promise<void>;
+  quests: (params: Quests.Request.Quests) => Promise<void>;
 };
 
 export const useQuestsActions = (): QuestsActionsHook => {
   const dispatch = useDispatch();
 
-  const getQuests = React.useCallback((params: Pagination) => {
-    return Actions.getQuests(params, dispatch);
-  }, []);
+  const quests = (params: Quests.Request.Quests) => {
+    return Actions.quests(params, dispatch);
+  };
 
   return {
-    getQuests,
+    quests,
   };
 }

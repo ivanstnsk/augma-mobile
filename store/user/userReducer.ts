@@ -1,45 +1,28 @@
-import { UserAction, UserActionPayload } from './userActions';
+import { User } from 'types/models/User';
+import { Models } from 'types/models/models';
 
-export interface UserReducerState {
-  token?: string;
-  info: {
-    name: string;
-  };
-  doneTutorial: boolean;
-}
+import { UserAction } from './userActions';
+
+export type UserReducerState = Models.User;
 
 export const initState: UserReducerState = {
-  token: '',
   info: {
     name: '',
+    avatarUrl: '',
   },
   doneTutorial: false,
 };
 
 export const userReducer = (state = initState, action: ReducerAction<UserAction>) => {
   switch (action.type) {
-    case UserAction.USER_LOGIN_SUCCESS: {
-      const { token } = action.payload as UserActionPayload;
-
-      return {
-        ...state,
-        token,
-      };
-    }
-    case UserAction.USER_USER_SUCCESS: {
-      const { info, doneTutorial } = action.payload as UserActionPayload;
+    case UserAction.USER_SUCCESS: {
+      const { info, doneTutorial } = action.payload as User.Response.User;
 
       return {
         ...state,
         info,
         doneTutorial,
       }
-    }
-    case UserAction.USER_LOGOUT_SUCCESS: {
-      return {
-        ...state,
-        token: '',
-      };
     }
     default: {
       return state;
