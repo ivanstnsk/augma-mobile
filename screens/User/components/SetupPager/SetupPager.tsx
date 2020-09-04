@@ -33,9 +33,15 @@ export const SetupPager: React.FC<Props> = ({
       {children}
       <View style={wrapperStyles}>
         <View style={styles.container}>
-          <Button {...Pager.prevButton} />
+          <Button
+            {...Pager.prevButton}
+            style={styles.button}
+          />
           <Spacer width={16} />
-          <Button {...Pager.nextButton}/>
+          <Button
+            {...Pager.nextButton}
+            style={styles.button}
+          />
         </View>
       </View>
     </ActivePageContext.Provider>
@@ -52,5 +58,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 16,
+  },
+  button: {
+    flex: 1,
   }
 });
