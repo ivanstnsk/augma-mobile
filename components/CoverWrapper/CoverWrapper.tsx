@@ -50,7 +50,7 @@ export const CoverWrapper: React.FC<Props> = ({
       navbarColor="#181818"
       title={TitleComponent}
       renderContent={() => ContentComponent}
-      backgroundImage={require('../../assets/images/quest-1-cover.png')}
+      backgroundImage={Assets.icons.tempCover}
       backgroundImageScale={1.1}
       renderNavBar={getNavBarRenderer(insets.top, handleBackPress)}
       containerStyle={styles.container}

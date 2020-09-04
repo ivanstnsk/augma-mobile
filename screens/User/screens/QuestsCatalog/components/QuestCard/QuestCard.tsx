@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, TouchableOpacity, Image, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import * as Assets from 'ui/assets';
 import { ComplexityBar } from 'components/ComplexityBar';
 
 type Props = {
@@ -23,7 +24,7 @@ export const QuestCard: React.FC<Props> = ({
       style={styles.button}
     >
       <Image
-        source={require('assets/images/quest-1-cover.png')}
+        source={Assets.icons.tempCover}
         resizeMode="cover"
         style={styles.image}
       />

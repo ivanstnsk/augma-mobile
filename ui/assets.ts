@@ -32,6 +32,8 @@ export const icons = {
   infoQuestion: require('../assets/images/info-question.png'),
   infoCondition: require('../assets/images/info-condition.png'),
   infoLimit: require('../assets/images/info-limit.png'),
+
+  tempCover: require('assets/images/quest-1-cover.png'),
 };
 
 export type AssetIcon = keyof typeof icons;

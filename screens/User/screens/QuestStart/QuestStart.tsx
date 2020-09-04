@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 import { CoverWrapper } from 'components/CoverWrapper';
 import { Button } from 'components/Button';
 import { Map } from 'components/Map';
-
 import { InfoCard } from 'screens/User/components/InfoCard';
 
 import { Title } from './components';
