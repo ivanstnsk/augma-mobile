@@ -1,16 +1,19 @@
 import * as React from 'react';
-// import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { ScreenWrapper } from 'components/ScreenWrapper';
 import { NoScreen } from 'components/NoScreen';
 
 export const QuestMessages: React.FC = () => {
   return (
-    <ScreenWrapper>
+    <View style={styles.wrapper}>
       <NoScreen />
-    </ScreenWrapper>
+    </View>
   );
 }
 
-// const styles = StyleSheet.create({
-// });
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    backgroundColor: '#1F1F1F',
+  }
+});
