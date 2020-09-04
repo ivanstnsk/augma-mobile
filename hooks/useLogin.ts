@@ -18,7 +18,7 @@ export const useLogin = (): LoginHook => {
 
   const login = async (data: UserCredentials): Promise<void> => {
     return new Promise(async (resolve, reject) => {
-      Loader.show();
+      Loader.show('solid');
       try {
         await User.login(data, dispatch);
         resolve();
@@ -30,13 +30,13 @@ export const useLogin = (): LoginHook => {
   }
 
   const registration = async (data: UserCredentials) => {
-    Loader.show();
+    Loader.show('solid');
     await User.registration(data, dispatch);
     Loader.hide();
   }
 
   const logout = async () => {
-    Loader.show();
+    Loader.show('solid');
     await User.logout(dispatch);
     Loader.hide();
   }

@@ -19,6 +19,8 @@ export const LoadingWrapper: React.FC<Props> = ({
       setVisible(true);
       if (bgVariant) {
         setBgVariant(bgVariant);
+      } else {
+        setBgVariant('transparent');
       }
     },
     hide: () => setVisible(false),
