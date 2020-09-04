@@ -25,6 +25,10 @@ export const QuestStart: React.FC = () => {
     navigation.navigate('questStartTimer');
   }, []);
 
+  const handleMapPress = React.useCallback(() => {
+    navigation.navigate('questMap');
+  }, []);
+
   React.useEffect(() => {
     setTimeout(() => setMapVisible(true), 1000)
   }, []);
@@ -53,6 +57,8 @@ export const QuestStart: React.FC = () => {
           </View>
           <Map
             visible={mapVisible}
+            readonly
+            onPress={handleMapPress}
             style={styles.mapWrapper}
           />
           <Button
