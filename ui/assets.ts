@@ -1,3 +1,5 @@
+import { Models } from "types/models/models";
+
 export const icons = {
   account: require('../assets/images/tab-account.png'),
   quests: require('../assets/images/tab-quests.png'),
@@ -36,6 +38,19 @@ export const icons = {
   tempCover: require('assets/images/quest-1-cover.png'),
 };
 
+export const inventoryItemIcons = {
+  itemFile: require('assets/images/item-file.png'),
+  itemFileLocked: require('assets/images/item-file-locked.png'),
+}
+
 export type AssetIcon = keyof typeof icons;
 
 export const getIconByName = (name: AssetIcon) => icons[name];
+
+export const getInventoryIconByName = (name: Models.InventoryItemType) => {
+  switch (name) {
+    case 'file': return inventoryItemIcons.itemFile;
+    case 'file-locked': return inventoryItemIcons.itemFileLocked;
+    default: return inventoryItemIcons.itemFileLocked;
+  }
+}
