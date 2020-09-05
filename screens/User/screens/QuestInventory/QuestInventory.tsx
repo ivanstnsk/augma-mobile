@@ -1,27 +1,67 @@
 import * as React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { InventoryCell } from './components';
+import { Models } from 'types/models/models';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const CELL_SIZE = (SCREEN_WIDTH - 70) / 4;
 const CELLS_COUNT = 20;
 
-const renderCells = () => {
-  const cells = [];
+const INVENTORY: Models.Inventory = {
+  items: [
+    {
+      id: 'item1',
+      type: 'file',
+      title: 'Секретные данные',
+      description: 'Эти данные нужно передать курьеру для успешного проходждения этапа квеста',
+    },
+    {
+      id: 'item2',
+      type: 'file-locked',
+      title: 'Зашифрованные данные',
+      description: 'Эти данные зашифрованы и требуют расшифровки. Далее их нужно передать курьеру для успешного проходждения этапа квеста',
+    },
+  ],
+}
 
-  for (let i = 0; i < CELLS_COUNT; i += 1) {
-    cells.push(
-      <InventoryCell
-        size={CELL_SIZE}
-      />
-    );
+const getCellsRenderer = (
+  getItemInfoPressHandler: (item: Models.InventoryItem) => () => void,
+) => {
+  return () => {
+    const cells = [];
+
+    for (let i = 0; i < CELLS_COUNT; i += 1) {
+      let props = {};
+      if (i < INVENTORY.items.length) {
+        props = {
+          data: INVENTORY.items[i],
+          onGetLongPressHandler: getItemInfoPressHandler,
+        };
+      }
+
+      cells.push(
+        <InventoryCell
+          size={CELL_SIZE}
+          {...props}
+        />
+      );
+    }
+
+    return cells;
   }
-
-  return cells;
 }
 
 export const QuestInventory: React.FC = () => {
+  const navigation = useNavigation();
+
+  const getItemInfoPressHandler = React.useCallback((item: Models.InventoryItem) => () => {
+    navigation.navigate('inventoryItem', { data: item });
+  }, []);
+
+  const renderCells = getCellsRenderer(getItemInfoPressHandler);
+
   return (
     <View style={styles.wrapper}>
       {renderCells()}
