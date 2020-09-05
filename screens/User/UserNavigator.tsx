@@ -12,6 +12,7 @@ import { useLoader } from 'hooks/useLoader';
 import { QuestStart } from './screens/QuestStart';
 import { QuestMap } from './screens/QuestMap';
 import { QuestStartTimer } from './screens/QuestStartTimer';
+import { InventoryItem } from './screens/InventoryItem';
 import { MainTabNavigator } from './MainTabNavigator';
 import { QuestTabNavigator } from './QuestTabNavigator';
 import { SetupNavigator } from './SetupNavigator';
@@ -47,6 +48,21 @@ export const UserNavigator: React.FC = () => {
             options={{
               headerShown: false,
               animationEnabled: false
+            }}
+          />
+          <UserStack.Screen
+            name="inventoryItem"
+            component={InventoryItem}
+            options={{
+              ...TransitionPresets.ModalSlideFromBottomIOS,
+              animationEnabled: true,
+              headerShown: false,
+              cardStyle: { backgroundColor: 'transparent' },
+              cardOverlayEnabled: true,
+              cardStyleInterpolator: UIStyles.modalDefaultInterpolator,
+              gestureResponseDistance: {
+                vertical: SCREEN_HEIGHT,
+              }
             }}
           />
           {/* TODO: add quest stack modals here */}

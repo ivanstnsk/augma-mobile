@@ -1,3 +1,5 @@
+import { Models } from "types/models/models";
+
 export type Routes =
 | 'auth'
   | 'signIn'
@@ -47,6 +49,9 @@ export type UserStackParamList = {
   questMap: undefined;
   questStart: undefined;
   questStartTimer: undefined;
+  inventoryItem: {
+    data: Models.InventoryItem;
+  };
 };
 
 export type QuestBottomTabParamList = {

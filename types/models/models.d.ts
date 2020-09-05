@@ -33,4 +33,19 @@ export namespace Models {
   export interface Quests {
     items: Array<Models.QuestShortOverview>;
   }
+
+  export type InventoryItemType =
+  | 'file'
+  | 'file-locked';
+
+  export interface InventoryItem {
+    id: string;
+    type: InventoryItemType;
+    title: string;
+    description: string;
+  }
+
+  export interface Inventory {
+    items: Array<InventoryItem>;
+  }
 }
