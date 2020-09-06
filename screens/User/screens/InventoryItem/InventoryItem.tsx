@@ -29,7 +29,7 @@ export const InventoryItem: React.FC<Props> = ({
   }, []);
 
   return (
-    <ModalWrapper>
+    <ModalWrapper onOverlayPress={handleCancelPress}>
       <View style={styles.container}>
         <View style={styles.inner}>
           <Image

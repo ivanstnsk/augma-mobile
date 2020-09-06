@@ -21,11 +21,11 @@ export const QuestStartTimer: React.FC = () => {
   }, []);
 
   return (
-    <ModalWrapper>
+    <ModalWrapper onOverlayPress={handleCancelPress}>
       <View style={styles.container}>
         <View style={styles.timerContainer}>
           <TimeCounter
-            fromTime={5}
+            fromTime={1}
             onDidFinish={handleStart}
           />
         </View>

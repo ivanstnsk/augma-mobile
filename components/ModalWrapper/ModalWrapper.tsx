@@ -1,15 +1,17 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {
   children: React.ReactElement | React.ReactElement[];
   disableBottomInset?: boolean;
+  onOverlayPress?: () => void;
 };
 
 export const ModalWrapper: React.FC<Props> = ({
   children,
   disableBottomInset,
+  onOverlayPress,
 }) => {
   const insets = useSafeAreaInsets();
 
@@ -22,6 +24,9 @@ export const ModalWrapper: React.FC<Props> = ({
 
   return (
     <View style={styles.wrapper}>
+      <TouchableWithoutFeedback onPress={onOverlayPress}>
+        <View style={styles.overlayContainer} />
+      </TouchableWithoutFeedback>
       <View style={containerStyles}>
         {children}
       </View>
@@ -35,6 +40,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'stretch',
     backgroundColor: 'transparent',
+  },
+  overlayContainer: {
+    flex: 1,
   },
   container: {
     paddingVertical: 24,
