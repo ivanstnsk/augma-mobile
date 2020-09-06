@@ -20,7 +20,6 @@ const cacheImages = (images: string[]) => {
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
 
-  // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
@@ -33,10 +32,12 @@ export default function useCachedResources() {
         });
 
         // Load images
-        const images = Object.values(Assets.icons);
-        await Promise.all(cacheImages(images));
+        const icons = Object.values(Assets.icons);
+        const inventoryIcons = Object.values(Assets.inventoryItemIcons);
+      
+        await Promise.all(cacheImages(icons));
+        await Promise.all(cacheImages(inventoryIcons));
       } catch (e) {
-        // We might want to provide this error information to an error reporting service
         console.warn(e);
       } finally {
         setLoadingComplete(true);
