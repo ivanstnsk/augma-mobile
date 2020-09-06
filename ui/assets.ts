@@ -12,6 +12,7 @@ export const icons = {
   skullActive: require('../assets/images/skull-active.png'),
   backArrow: require('../assets/images/back-arrow.png'),
   close: require('../assets/images/icon-close.png'),
+  clock: require('../assets/images/icon-clock.png'),
 
   questProgress: require('../assets/images/tab-quest-progress.png'),
   questProgressActive: require('../assets/images/tab-quest-progress-active.png'),
