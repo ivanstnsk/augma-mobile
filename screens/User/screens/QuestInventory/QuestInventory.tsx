@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { InventoryCell } from './components';
+import { InventoryCell } from 'components/Inventory';
 import { Models } from 'types/models/models';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
@@ -16,17 +16,34 @@ const INVENTORY: Models.Inventory = {
       type: 'file',
       title: 'Секретные данные',
       description: 'Эти данные нужно передать курьеру для успешного проходждения этапа квеста',
+      disabled: false,
     },
     {
       id: 'item2',
       type: 'file-locked',
       title: 'Зашифрованные данные',
       description: 'Эти данные зашифрованы и требуют расшифровки. Далее их нужно передать курьеру для успешного проходждения этапа квеста',
+      disabled: false,
+    },
+    {
+      id: 'item3',
+      type: 'file',
+      title: 'Зашифрованные данные',
+      description: 'Эти данные зашифрованы и требуют расшифровки. Далее их нужно передать курьеру для успешного проходждения этапа квеста',
+      disabled: true,
+    },
+    {
+      id: 'item4',
+      type: 'file-locked',
+      title: 'Зашифрованные данные',
+      description: 'Эти данные зашифрованы и требуют расшифровки. Далее их нужно передать курьеру для успешного проходждения этапа квеста',
+      disabled: true,
     },
   ],
 }
 
 const getCellsRenderer = (
+  getItemPressHandler: (item: Models.InventoryItem) => () => void,
   getItemInfoPressHandler: (item: Models.InventoryItem) => () => void,
 ) => {
   return () => {
@@ -35,14 +52,17 @@ const getCellsRenderer = (
     for (let i = 0; i < CELLS_COUNT; i += 1) {
       let props = {};
       if (i < INVENTORY.items.length) {
+        const data = INVENTORY.items[i];
         props = {
-          data: INVENTORY.items[i],
+          data,
+          onGetPressHandler: getItemPressHandler,
           onGetLongPressHandler: getItemInfoPressHandler,
         };
       }
 
       cells.push(
         <InventoryCell
+          key={`inventoryCellWrapper-${i}`}
           size={CELL_SIZE}
           {...props}
         />
@@ -57,10 +77,17 @@ export const QuestInventory: React.FC = () => {
   const navigation = useNavigation();
 
   const getItemInfoPressHandler = React.useCallback((item: Models.InventoryItem) => () => {
-    navigation.navigate('inventoryItem', { data: item });
+    navigation.navigate('inventoryItemInfo', { data: item });
   }, []);
 
-  const renderCells = getCellsRenderer(getItemInfoPressHandler);
+  const getItemPressHandler = React.useCallback((item: Models.InventoryItem) => () => {
+    navigation.navigate('inventoryItemApply', { data: item });
+  }, []);
+
+  const renderCells = getCellsRenderer(
+    getItemPressHandler,
+    getItemInfoPressHandler,
+  );
 
   return (
     <View style={styles.wrapper}>
