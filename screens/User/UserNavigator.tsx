@@ -11,9 +11,9 @@ import { useLoader } from 'hooks/useLoader';
 
 import { QuestStart } from './screens/QuestStart';
 import { QuestMap } from './screens/QuestMap';
-import { QuestStartTimer } from './screens/QuestStartTimer';
-import { InventoryItemInfo } from './screens/InventoryItemInfo';
-import { InventoryItemApply } from './screens/InventoryItemApply';
+import { QuestStartTimer } from './screens/Modals/QuestStartTimer';
+import { InventoryItemInfo } from './screens/Modals/InventoryItemInfo';
+import { InventoryItemApply } from './screens/Modals/InventoryItemApply';
 import { MainTabNavigator } from './MainTabNavigator';
 import { QuestTabNavigator } from './QuestTabNavigator';
 import { SetupNavigator } from './SetupNavigator';
