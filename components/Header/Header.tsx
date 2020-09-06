@@ -29,7 +29,7 @@ export const Header: React.FC<Props> = ({
 
   const wrapperStyles = {
     ...styles.wrapper,
-    paddingTop: insets.top,
+    paddingTop: insets.top + 24,
   };
   const titleStyles = canGoBack
     ? [styles.title, styles.titleSecondary]
