@@ -43,6 +43,7 @@ export namespace Models {
     type: InventoryItemType;
     title: string;
     description: string;
+    disabled: boolean;
   }
 
   export interface Inventory {
