@@ -49,7 +49,10 @@ export type UserStackParamList = {
   questMap: undefined;
   questStart: undefined;
   questStartTimer: undefined;
-  inventoryItem: {
+  inventoryItemInfo: {
+    data: Models.InventoryItem;
+  };
+  inventoryItemApply: {
     data: Models.InventoryItem;
   };
 };
