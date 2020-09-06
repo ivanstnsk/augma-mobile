@@ -12,7 +12,8 @@ import { useLoader } from 'hooks/useLoader';
 import { QuestStart } from './screens/QuestStart';
 import { QuestMap } from './screens/QuestMap';
 import { QuestStartTimer } from './screens/QuestStartTimer';
-import { InventoryItem } from './screens/InventoryItem';
+import { InventoryItemInfo } from './screens/InventoryItemInfo';
+import { InventoryItemApply } from './screens/InventoryItemApply';
 import { MainTabNavigator } from './MainTabNavigator';
 import { QuestTabNavigator } from './QuestTabNavigator';
 import { SetupNavigator } from './SetupNavigator';
@@ -51,8 +52,23 @@ export const UserNavigator: React.FC = () => {
             }}
           />
           <UserStack.Screen
-            name="inventoryItem"
-            component={InventoryItem}
+            name="inventoryItemInfo"
+            component={InventoryItemInfo}
+            options={{
+              ...TransitionPresets.ModalSlideFromBottomIOS,
+              animationEnabled: true,
+              headerShown: false,
+              cardStyle: { backgroundColor: 'transparent' },
+              cardOverlayEnabled: true,
+              cardStyleInterpolator: UIStyles.modalDefaultInterpolator,
+              gestureResponseDistance: {
+                vertical: SCREEN_HEIGHT,
+              }
+            }}
+          />
+          <UserStack.Screen
+            name="inventoryItemApply"
+            component={InventoryItemApply}
             options={{
               ...TransitionPresets.ModalSlideFromBottomIOS,
               animationEnabled: true,
