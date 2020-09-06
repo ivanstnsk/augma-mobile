@@ -7,6 +7,7 @@ import useCachedResources from './hooks/useCachedResources';
 import { Navigation } from './navigation';
 import { GlobalErrorWrapper } from 'components/GlobalErrorWrapper';
 import { LoadingWrapper } from 'components/LoadingWrapper';
+import { GlobalTimerCounter } from 'components/GlobalTimerCounter';
 import { store } from 'store';
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
             <SafeAreaProvider>
               <Navigation />
               <StatusBar style="light"/>
+              <GlobalTimerCounter />
             </SafeAreaProvider>
           </LoadingWrapper>
         </GlobalErrorWrapper>
