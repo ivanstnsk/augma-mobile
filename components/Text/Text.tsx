@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Text as RNText, TextProps } from 'react-native';
 
 type Props = {
-  children: string | React.ReactElement | React.ReactElement[];
+  children: string | number | React.ReactElement | React.ReactElement[];
 } & TextProps;
 
 export const Text: React.FC<Props> = ({
