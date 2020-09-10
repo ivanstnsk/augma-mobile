@@ -27,6 +27,9 @@ export const icons = {
   logoEye: require('../assets/images/logo-eye.png'),
   logoWrapper: require('../assets/images/logo-wrapper.png'),
 
+  marker: require('../assets/images/map-marker.png'),
+  markerActive: require('../assets/images/map-marker-active.png'),
+
   welcomeTab1: require('../assets/images/welcome-tab1.png'),
   welcomeTab2: require('../assets/images/welcome-tab2.png'),
   welcomeTab3: require('../assets/images/welcome-tab3.png'),
