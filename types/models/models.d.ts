@@ -34,6 +34,15 @@ export namespace Models {
     items: Array<Models.QuestShortOverview>;
   }
 
+  export type QuestPointType = 'locked' | 'active' | 'passed';
+
+  export interface QuestPoint {
+    id: number;
+    type: QuestPointType;
+    title: string;
+    description: string;
+  }
+
   export type InventoryItemType =
   | 'file'
   | 'file-locked';
