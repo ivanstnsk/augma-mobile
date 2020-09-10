@@ -4,7 +4,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 import { LoadingOverlay } from '../LoadingWrapper/LoadingOverlay';
 
-import { RegionMarker } from './components';
+import { RegionMarker, PointMarker, HighlightZoneMarker } from './components';
 import { mapStyles } from './mapStyles';
 
 type Props = {
@@ -67,6 +67,21 @@ export const Map: React.FC<Props> = ({
               longitude: 36.238924,
             }}
             radius={500}
+          />
+          <PointMarker
+            center={{
+              latitude: 50.012230,
+              longitude: 36.248924,
+            }}
+            active={false}
+            number={3}
+          />
+          <HighlightZoneMarker
+            center={{
+              latitude: 50.032230,
+              longitude: 36.218924,
+            }}
+            size={100}
           />
         </MapView>
       )}
