@@ -43,6 +43,10 @@ export namespace Models {
     description: string;
   }
 
+  export interface QuestPoints {
+    items: Array<Models.QuestPoint>;
+  }
+
   export type InventoryItemType =
   | 'file'
   | 'file-locked';
