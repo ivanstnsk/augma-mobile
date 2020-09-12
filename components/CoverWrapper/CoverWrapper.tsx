@@ -25,7 +25,7 @@ const getNavBarRenderer = (insetTop: number, onBackPress: () => void) => (): JSX
 }
 
 type Props = {
-  children: [React.ReactElement, React.ReactElement];
+  children: [React.ReactElement | null, React.ReactElement];
 }
 
 export const CoverWrapper: React.FC<Props> = ({
