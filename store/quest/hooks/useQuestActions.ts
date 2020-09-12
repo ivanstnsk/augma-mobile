@@ -8,6 +8,7 @@ import * as Actions from '../questActions';
 type QuestActionsHook = {
   start: (questId: string) => void;
   finish: () => void;
+  questInfo: (questId: string, params: Quests.Request.QuestInfo) => Promise<void>;
   questPoints: (questId: string, params: Quests.Request.QuestPoints) => Promise<void>;
 };
 
@@ -32,6 +33,10 @@ export const useQuestActions = (): QuestActionsHook => {
     }
   }
 
+  const questInfo = (questId: string, params: Quests.Request.QuestInfo) => {
+    return Actions.questInfo(questId, params, dispatch);
+  }
+
   const questPoints = (questId: string, params: Quests.Request.QuestPoints) => {
     return Actions.questPoints(questId, params, dispatch);
   };
@@ -39,6 +44,7 @@ export const useQuestActions = (): QuestActionsHook => {
   return {
     start,
     finish,
+    questInfo,
     questPoints,
   };
 }

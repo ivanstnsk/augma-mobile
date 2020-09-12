@@ -6,6 +6,7 @@ import { Models } from 'types/models/models';
 export interface QuestStore {
   id?: string;
   points: Models.QuestPoints;
+  info?: Models.QuestInfo;
 }
 
 export const initState: QuestStore = {
@@ -39,6 +40,14 @@ export const questReducer = (
         points: {
           items: [ ...items ]
         },
+      };
+    }
+    case QuestAction.QUEST_INFO_SUCCESS: {
+      const info = action.payload as Quests.Response.QuestInfo;
+
+      return {
+        ...state,
+        info,
       };
     }
     default: {

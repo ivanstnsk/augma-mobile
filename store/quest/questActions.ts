@@ -6,6 +6,8 @@ export enum QuestAction {
   QUEST_FINISH = 'QUEST_FINISH',
   QUEST_POINTS_SUCCESS = 'QUEST_POINTS_SUCCESS',
   QUEST_POINTS_ERROR = 'QUEST_POINTS_ERROR',
+  QUEST_INFO_SUCCESS = 'QUEST_INFO_SUCCESS',
+  QUEST_INFO_ERROR = 'QUEST_INFO_ERROR',
 }
 
 export type QuestPayload = { id: string } & {};
@@ -31,6 +33,34 @@ export const actionQuestPointsError = (error: any) => ({
   type: QuestAction.QUEST_POINTS_ERROR,
   payload: error,
 });
+
+export const actionQuestInfoSuccess = (payload: Quests.Response.QuestInfo) => ({
+  type: QuestAction.QUEST_INFO_SUCCESS,
+  payload,
+});
+
+export const actionQuestInfoError = (error: any) => ({
+  type: QuestAction.QUEST_INFO_ERROR,
+  payload: error,
+});
+
+export const questInfo = async (
+  questId: string,
+  params: Quests.Request.QuestInfo,
+  dispatch: ReducerDispatch<QuestAction>,
+): Promise<void> => {
+  return new Promise(async (resolve) => {
+    try {
+      const res = await QuestApi.questInfo(questId, params);
+
+      dispatch(actionQuestInfoSuccess(res));
+    } catch (error) {
+      dispatch(actionQuestInfoError(error));
+    } finally {
+      resolve();
+    }
+  });
+}
 
 export const questPoints = async (
   questId: string,
