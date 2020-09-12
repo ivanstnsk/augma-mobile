@@ -4,10 +4,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type Props = {
   title: string;
+  RightComponent: React.ReactElement;
 }
 
 export const HeaderBlock: React.FC<Props> = ({
   title,
+  RightComponent,
 }) => {
   const insets = useSafeAreaInsets();
 
@@ -26,12 +28,16 @@ export const HeaderBlock: React.FC<Props> = ({
           </Text>
         </View>
       </View>
+      {RightComponent}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#1F1F1F',
     paddingBottom: 8,
   },
