@@ -13,10 +13,11 @@ export const ProgressBar: React.FC<Props> = ({
   progress,
 }) => {
   const width = React.useRef(new Animated.Value(0)).current;
+  const percent = (progress * 100).toFixed(0);
 
   const progressStyles = [
     styles.progress,
-    { width },
+    { width: `${percent}%` },
   ];
 
   const animate = React.useCallback(() => {
@@ -34,7 +35,7 @@ export const ProgressBar: React.FC<Props> = ({
 
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.text}>{`${progress * 100} %`}</Text>
+      <Text style={styles.text}>{`${percent} %`}</Text>
       <View style={styles.progressContainer}>
         <Animated.View style={progressStyles} />
       </View>
