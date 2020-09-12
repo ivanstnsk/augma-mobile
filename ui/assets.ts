@@ -18,6 +18,7 @@ export const icons = {
   pointPassed: require('../assets/images/quest-point-passed.png'),
   dashLine: require('../assets/images/quest-card-dash-line.png'),
   dashLineActive: require('../assets/images/quest-card-dash-line-active.png'),
+  pageMenu: require('../assets/images/page-menu.png'),
 
   questProgress: require('../assets/images/tab-quest-progress.png'),
   questProgressActive: require('../assets/images/tab-quest-progress-active.png'),
