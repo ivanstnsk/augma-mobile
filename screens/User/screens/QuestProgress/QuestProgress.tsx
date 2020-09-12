@@ -1,94 +1,59 @@
 import * as React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { Models } from 'types/models/models';
 import { HeaderBlock } from 'components/HeaderBlock';
-import { Button } from 'components/Button';
 import { useQuestActions } from 'store/quest';
 
-import { QuestPointCard, ProgressBar } from './components';
+import { QuestPointCard } from './components';
+import { useQuest } from './hooks';
+
+const getItemRenderer = (progress: number, getPressHandler: (id: number) => () => void) => {
+  return ({ item }: { item: Models.QuestPoint }): JSX.Element => {
+    const onOpenDetailsPress = getPressHandler(item.id);
+
+    return (
+      <QuestPointCard
+        key={item.id}
+        data={item}
+        progress={progress}
+        onOpenDetailsPress={onOpenDetailsPress}
+      />
+    );
+  }
+}
 
 export const QuestProgress: React.FC = () => {
   const navigation = useNavigation();
   const QuestActions = useQuestActions();
+  const Quest = useQuest('testQuest1');
+  const progress = Quest.info?.progress || 0;
 
-  const handleFinishPress = () => {
-    QuestActions.finish();
-  };
+  // const handleFinishPress = () => {
+  //   QuestActions.finish();
+  // };
 
   const getOpenDetailsPressHandler = React.useCallback((pointId: number) => () => {
-    navigation.navigate('questPointDetails');
+    navigation.navigate('questPointDetails', { pointId });
   }, []);
+
+  const renderItem = getItemRenderer(
+    progress,
+    getOpenDetailsPressHandler
+  );
 
   return (
     <View style={styles.wrapper}>
       <HeaderBlock title="Прогресс" />
-      <ScrollView
-        contentContainerStyle={styles.infoContainer}
-      >
-        <QuestPointCard
-          data={{
-            id: 1,
-            title: 'Передача данных',
-            description: 'Курьер ждет тебя на Южном вокзале. Но будь осторожен, вчера был крупный слив данных так что тебе придется хорошенько постараться если ты не хочешь попасть в ситуацию когда даже мы не сможем помочь тебе',
-            type: 'passed'
-          }}
-          onOpenDetailsPress={getOpenDetailsPressHandler(1)}
-        />
-        <ProgressBar progress={0.3} />
-        <QuestPointCard
-          data={{
-            id: 2,
-            title: 'Передача данных',
-            description: 'Курьер ждет тебя на Южном вокзале. Но будь осторожен, вчера был крупный слив данных так что тебе придется хорошенько постараться если ты не хочешь попасть в ситуацию когда даже мы не сможем помочь тебе',
-            type: 'active'
-          }}
-          onOpenDetailsPress={getOpenDetailsPressHandler(1)}
-        />
-        <QuestPointCard
-          data={{
-            id: 3,
-            title: 'Передача данных',
-            description: 'Курьер ждет тебя на Южном вокзале. Но будь осторожен, вчера был крупный слив данных так что тебе придется хорошенько постараться если ты не хочешь попасть в ситуацию когда даже мы не сможем помочь тебе',
-            type: 'locked'
-          }}
-          onOpenDetailsPress={getOpenDetailsPressHandler(1)}
-        />
-        <QuestPointCard
-          data={{
-            id: 4,
-            title: 'Передача данных',
-            description: 'Курьер ждет тебя на Южном вокзале. Но будь осторожен, вчера был крупный слив данных так что тебе придется хорошенько постараться если ты не хочешь попасть в ситуацию когда даже мы не сможем помочь тебе',
-            type: 'locked'
-          }}
-          onOpenDetailsPress={getOpenDetailsPressHandler(1)}
-        />
-        <QuestPointCard
-          data={{
-            id: 5,
-            title: 'Передача данных',
-            description: 'Курьер ждет тебя на Южном вокзале. Но будь осторожен, вчера был крупный слив данных так что тебе придется хорошенько постараться если ты не хочешь попасть в ситуацию когда даже мы не сможем помочь тебе',
-            type: 'locked'
-          }}
-          onOpenDetailsPress={getOpenDetailsPressHandler(1)}
-        />
-        <QuestPointCard
-          data={{
-            id: 6,
-            title: 'Передача данных',
-            description: 'Курьер ждет тебя на Южном вокзале. Но будь осторожен, вчера был крупный слив данных так что тебе придется хорошенько постараться если ты не хочешь попасть в ситуацию когда даже мы не сможем помочь тебе',
-            type: 'locked'
-          }}
-          onOpenDetailsPress={getOpenDetailsPressHandler(1)}
-        />
-        <Button
-          onPress={handleFinishPress}
-          label="Завершить квест"
-          variant="outline"
-          color="primary"
-          style={styles.finishButton}
-        />
-      </ScrollView>
+      <FlatList
+        data={Quest.points.items}
+        refreshing={Quest.refreshing}
+        renderItem={renderItem}
+        onRefresh={Quest.onRefresh}
+        style={styles.wrapper}
+        contentContainerStyle={styles.container}
+      />
     </View>
   );
 }
@@ -96,14 +61,11 @@ export const QuestProgress: React.FC = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    flexDirection: 'column',
-    alignItems: 'stretch',
-    justifyContent: 'flex-start',
     backgroundColor: '#1F1F1F',
   },
-  infoContainer: {
+  container: {
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'stretch',
     paddingHorizontal: 20,
     paddingTop: 16,
     paddingBottom: 24,
