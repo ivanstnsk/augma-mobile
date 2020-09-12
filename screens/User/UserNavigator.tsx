@@ -14,6 +14,7 @@ import { QuestMap } from './screens/QuestMap';
 import { QuestStartTimer } from './screens/Modals/QuestStartTimer';
 import { InventoryItemInfo } from './screens/Modals/InventoryItemInfo';
 import { InventoryItemApply } from './screens/Modals/InventoryItemApply';
+import { QuestMenu } from './screens/QuestMenu';
 import { MainTabNavigator } from './MainTabNavigator';
 import { QuestTabNavigator } from './QuestTabNavigator';
 import { SetupNavigator } from './SetupNavigator';
@@ -56,6 +57,21 @@ export const UserNavigator: React.FC = () => {
             options={{
               headerShown: false,
               animationEnabled: false
+            }}
+          />
+          <UserStack.Screen
+            name="questMenu"
+            component={QuestMenu}
+            options={{
+              ...TransitionPresets.ModalSlideFromBottomIOS,
+              animationEnabled: true,
+              headerShown: false,
+              cardStyle: { backgroundColor: 'transparent' },
+              cardOverlayEnabled: true,
+              cardStyleInterpolator: UIStyles.modalDefaultInterpolator,
+              gestureResponseDistance: {
+                vertical: SCREEN_HEIGHT,
+              }
             }}
           />
           <UserStack.Screen

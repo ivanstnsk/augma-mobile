@@ -55,6 +55,7 @@ export type UserStackParamList = {
   inventoryItemApply: {
     data: Models.InventoryItem;
   };
+  questMenu: undefined;
 };
 
 export type QuestBottomTabParamList = {
