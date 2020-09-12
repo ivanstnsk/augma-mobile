@@ -34,6 +34,10 @@ export namespace Models {
     items: Array<Models.QuestShortOverview>;
   }
 
+  export interface QuestInfo extends QuestShortOverview {
+    progress: number;
+  }
+
   export type QuestPointType = 'locked' | 'active' | 'passed';
 
   export interface QuestPoint {
