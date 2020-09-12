@@ -2,8 +2,8 @@ import * as React from 'react';
 import {Dimensions} from 'react-native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
-import { usePreferences } from 'store/preferences';
 import { useQuest } from 'store/quest';
+import * as TutorialsAll from 'store/tutorials';
 import { HeaderTitle } from 'components/HeaderTitle';
 import * as UIStyles from 'ui/styles';
 import { UserStackParamList } from 'screens/types';
@@ -24,15 +24,22 @@ const UserStack = createStackNavigator<UserStackParamList>();
 
 export const UserNavigator: React.FC = () => {
   const [questActive, setQuestActive] = React.useState(false);
+  const [tutorialWelcomeDone, setTutorialWelcomeDone] = React.useState(false);
   const Loader = useLoader();
-  const Preferences = usePreferences();
   const Quest = useQuest();
+  const Tutorials = TutorialsAll.useTutorials();
 
   React.useEffect(() => {
     Loader.show('solid');
     setTimeout(() => setQuestActive(!!Quest.id), 300);
     setTimeout(Loader.hide, 600);
   }, [Quest.id]);
+
+  React.useEffect(() => {
+    Loader.show('solid');
+    setTimeout(() => setTutorialWelcomeDone(Tutorials.welcomeDone), 300);
+    setTimeout(Loader.hide, 600);
+  }, [Tutorials.welcomeDone]);
 
   return (
     <UserStack.Navigator
@@ -85,7 +92,7 @@ export const UserNavigator: React.FC = () => {
         </>
       ) : (
         <>
-          {Preferences.firstSetupDone === 'done' ? (
+          {tutorialWelcomeDone ? (
             <>
               <UserStack.Screen
                 name="main"
