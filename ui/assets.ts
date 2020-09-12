@@ -13,6 +13,11 @@ export const icons = {
   backArrow: require('../assets/images/back-arrow.png'),
   close: require('../assets/images/icon-close.png'),
   clock: require('../assets/images/icon-clock.png'),
+  cardOpen: require('../assets/images/card-open.png'),
+  pointLocked: require('../assets/images/quest-point-locked.png'),
+  pointPassed: require('../assets/images/quest-point-passed.png'),
+  dashLine: require('../assets/images/quest-card-dash-line.png'),
+  dashLineActive: require('../assets/images/quest-card-dash-line-active.png'),
 
   questProgress: require('../assets/images/tab-quest-progress.png'),
   questProgressActive: require('../assets/images/tab-quest-progress-active.png'),
