@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import { useDispatch } from 'react-redux';
 
 import { Quests } from 'types/models/Quests';
@@ -13,12 +14,22 @@ type QuestActionsHook = {
 export const useQuestActions = (): QuestActionsHook => {
   const dispatch = useDispatch();
 
-  const start = (questId: string) => {
-    dispatch(Actions.actionQuestStart(questId));
+  const start = async (questId: string) => {
+    try {
+      await AsyncStorage.setItem('@questStartedId', questId);
+      dispatch(Actions.actionQuestStart(questId));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  const finish = () => {
-    dispatch(Actions.actionQuestFinish());
+  const finish = async () => {
+    try {
+      await AsyncStorage.removeItem('@questStartedId');
+      dispatch(Actions.actionQuestFinish());
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const questPoints = (questId: string, params: Quests.Request.QuestPoints) => {
