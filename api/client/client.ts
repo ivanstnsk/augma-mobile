@@ -1,6 +1,6 @@
 import Axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://augma-mobile.herokuapp.com/';
 
 export const client = Axios.create({
   baseURL: BASE_URL,
@@ -24,11 +24,15 @@ export const saveToken = (token: string) => {
   Object.assign(client.defaults.headers, {
     Authorization: `Bearer ${token}`,
   });
+
+  console.log('set token', client.defaults.headers)
 };
 
 export const removeToken = () => {
   delete client.defaults.headers.Authorization;
   delete auth.token;
+
+  console.log('token remove', client.defaults.headers);
 };
 
 export const getToken = () => {
