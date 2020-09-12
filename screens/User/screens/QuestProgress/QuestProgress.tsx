@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { Models } from 'types/models/models';
 import { HeaderBlock } from 'components/HeaderBlock';
-import { useQuestActions } from 'store/quest';
+import { PageMenuButton } from 'components/PageMenuButton';
 
 import { QuestPointCard } from './components';
 import { useQuest } from './hooks';
@@ -26,13 +26,12 @@ const getItemRenderer = (progress: number, getPressHandler: (id: number) => () =
 
 export const QuestProgress: React.FC = () => {
   const navigation = useNavigation();
-  const QuestActions = useQuestActions();
   const Quest = useQuest('testQuest1');
   const progress = Quest.info?.progress || 0;
 
-  // const handleFinishPress = () => {
-  //   QuestActions.finish();
-  // };
+  const handleMenuPress = React.useCallback(() => {
+    navigation.navigate('questMenu');
+  }, []);
 
   const getOpenDetailsPressHandler = React.useCallback((pointId: number) => () => {
     navigation.navigate('questPointDetails', { pointId });
@@ -45,7 +44,15 @@ export const QuestProgress: React.FC = () => {
 
   return (
     <View style={styles.wrapper}>
-      <HeaderBlock title="Прогресс" />
+      <HeaderBlock
+        title="Прогресс"
+        RightComponent={(
+          <PageMenuButton
+            onPress={handleMenuPress}
+            style={styles.menuButton}
+          />
+        )}
+      />
       <FlatList
         data={Quest.points.items}
         refreshing={Quest.refreshing}
@@ -73,5 +80,8 @@ const styles = StyleSheet.create({
   finishButton: {
     width: '100%',
     marginTop: 24,
+  },
+  menuButton: {
+    marginRight: 5,
   }
 });
