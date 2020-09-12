@@ -1,1 +1,1 @@
-export * from './useQuestPoints';
+export * from './useQuest';
