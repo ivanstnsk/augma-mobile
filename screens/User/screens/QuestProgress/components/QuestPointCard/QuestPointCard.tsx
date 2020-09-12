@@ -5,8 +5,11 @@ import { Text } from 'components/Text';
 import { Models } from 'types/models/models';
 import * as Assets from 'ui/assets';
 
+import { ProgressBar } from '../ProgressBar';
+
 type Props = {
   data: Models.QuestPoint;
+  progress: number;
   onOpenDetailsPress: () => void;
 }
 
@@ -17,6 +20,7 @@ export const QuestPointCard: React.FC<Props> = ({
     title,
     description,
   },
+  progress,
   onOpenDetailsPress,
 }) => {
   const wrapperStyles = [
@@ -37,61 +41,66 @@ export const QuestPointCard: React.FC<Props> = ({
     : styles.description;
 
   return (
-    <TouchableOpacity
-      disabled={type !== 'active'}
-      onPress={onOpenDetailsPress}
-      style={wrapperStyles}
-    >
-      <View style={styles.leftContainer}>
-        {type !== 'passed' && (
-          <Image
-            source={dashLineSrc}
-            resizeMode="repeat"
-            style={styles.dashLine}
-          />
-        )}
-        {type === 'passed' && (
-         <View style={styles.pointLockedContainer}>
-          <Image
-            source={Assets.icons.pointPassed}
-            resizeMode="contain"
-            style={styles.lockedImage}
-          />
-        </View>
-        )}
-        {type === 'active' && (
-          <View style={styles.pointContainer}>
-            <View style={styles.pointCircle}>
-              <Text style={styles.pointLabel}>3</Text>
-            </View>
-          </View>
-        )}
-        {type === 'locked' && (
+    <>
+      {type === 'active' && (
+        <ProgressBar progress={progress} />
+      )}
+      <TouchableOpacity
+        disabled={type !== 'active'}
+        onPress={onOpenDetailsPress}
+        style={wrapperStyles}
+      >
+        <View style={styles.leftContainer}>
+          {type !== 'passed' && (
+            <Image
+              source={dashLineSrc}
+              resizeMode="repeat"
+              style={styles.dashLine}
+            />
+          )}
+          {type === 'passed' && (
           <View style={styles.pointLockedContainer}>
             <Image
-              source={Assets.icons.pointLocked}
+              source={Assets.icons.pointPassed}
               resizeMode="contain"
               style={styles.lockedImage}
             />
           </View>
-        )}
-      </View>
-      <View style={styles.centerContainer}>
-        <Text style={titleStyles}>{title}</Text>
-        <Text style={descriptionStyles} numberOfLines={4}>{description}</Text>
-      </View>
-      <View style={styles.rightContainer}>
-        {type === 'active' && (
-          <Image
-            source={Assets.icons.cardOpen}
-            resizeMode="contain"
-          />
-        )}
-        {type === 'passed' && (
-          <Text style={styles.textPassed} numberOfLines={1}>12:23</Text>
-        )}
-      </View>
-    </TouchableOpacity>
+          )}
+          {type === 'active' && (
+            <View style={styles.pointContainer}>
+              <View style={styles.pointCircle}>
+                <Text style={styles.pointLabel}>{id}</Text>
+              </View>
+            </View>
+          )}
+          {type === 'locked' && (
+            <View style={styles.pointLockedContainer}>
+              <Image
+                source={Assets.icons.pointLocked}
+                resizeMode="contain"
+                style={styles.lockedImage}
+              />
+            </View>
+          )}
+        </View>
+        <View style={styles.centerContainer}>
+          <Text style={titleStyles}>{title}</Text>
+          <Text style={descriptionStyles} numberOfLines={4}>{description}</Text>
+        </View>
+        <View style={styles.rightContainer}>
+          {type === 'active' && (
+            <Image
+              source={Assets.icons.cardOpen}
+              resizeMode="contain"
+            />
+          )}
+          {type === 'passed' && (
+            <Text style={styles.textPassed} numberOfLines={1}>12:23</Text>
+          )}
+        </View>
+      </TouchableOpacity>
+    </>
   );
 }
 
