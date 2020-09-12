@@ -65,6 +65,7 @@ export type QuestBottomTabParamList = {
 
 export type QuestProgressParamList = {
   progress: undefined;
+  questPointDetails: undefined;
 };
 
 export type QuestMessagesParamList = {

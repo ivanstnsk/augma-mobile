@@ -14,6 +14,7 @@ import {
 import { QuestProgress } from './screens/QuestProgress';
 import { QuestMessages } from './screens/QuestMessages';
 import { QuestInventory } from './screens/QuestInventory';
+import { QuestPointDetails } from './screens/QuestPointDetails';
 import { QuestBottomTabs } from './components/QuestBottomTabs';
 
 const QuestProgressStack = createStackNavigator<QuestProgressParamList>();
@@ -25,7 +26,14 @@ const QuestProgressNavigator: React.FC = () => {
         name="progress"
         component={QuestProgress}
         options={{
-          header: Header
+          headerShown: false,
+        }}
+      />
+      <QuestProgressStack.Screen
+        name="questPointDetails"
+        component={QuestPointDetails}
+        options={{
+          headerShown: false,
         }}
       />
     </QuestProgressStack.Navigator>
